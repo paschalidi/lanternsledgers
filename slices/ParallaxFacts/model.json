@@ -1,0 +1,56 @@
+{
+  "id": "parallax_facts",
+  "type": "SharedSlice",
+  "name": "ParallaxFacts",
+  "description": "Dark parallax section with title, description, CTA button, and stat items",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Parallax section with stats and CTA",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": { "label": "Title", "single": "heading2" }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": { "label": "Description", "multi": "paragraph,strong,em" }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": { "label": "CTA Button Text", "placeholder": "Request Price" }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": { "label": "CTA Link", "allowTargetBlank": true, "allowText": true, "repeat": false }
+        },
+        "background_image": {
+          "type": "Image",
+          "config": { "label": "Background Image" }
+        },
+        "facts": {
+          "type": "Group",
+          "config": {
+            "label": "Facts / Stats",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": { "label": "Stat Value", "placeholder": "28%" }
+              },
+              "description": {
+                "type": "Text",
+                "config": { "label": "Description" }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

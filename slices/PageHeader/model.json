@@ -1,0 +1,35 @@
+{
+  "id": "page_header",
+  "type": "SharedSlice",
+  "name": "PageHeader",
+  "description": "Page header hero section with parallax background, caption, title, and description",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Parallax hero with background image and centered text",
+      "imageUrl": "",
+      "primary": {
+        "caption": {
+          "type": "Text",
+          "config": { "label": "Caption", "placeholder": "About Our Company" }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": { "label": "Title", "single": "heading1" }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": { "label": "Description", "multi": "paragraph,strong,em" }
+        },
+        "background_image": {
+          "type": "Image",
+          "config": { "label": "Background Image" }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

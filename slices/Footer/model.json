@@ -1,0 +1,123 @@
+{
+  "id": "footer",
+  "type": "SharedSlice",
+  "name": "Footer",
+  "description": "Site footer with logo, about text, contact info, link columns, and social links",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Standard footer with logo, about, links, and socials",
+      "imageUrl": "",
+      "primary": {
+        "logo_light": {
+          "type": "Image",
+          "config": {
+            "label": "Logo (Light Mode)",
+            "constraint": { "width": 210, "height": 68 }
+          }
+        },
+        "logo_dark": {
+          "type": "Image",
+          "config": {
+            "label": "Logo (Dark Mode)",
+            "constraint": { "width": 210, "height": 68 }
+          }
+        },
+        "about_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "About Text",
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "phone": {
+          "type": "Text",
+          "config": { "label": "Phone", "placeholder": "+1 837 652 8800" }
+        },
+        "email": {
+          "type": "Text",
+          "config": { "label": "Email", "placeholder": "hello@example.com" }
+        },
+        "company_title": {
+          "type": "Text",
+          "config": { "label": "Company Column Title", "placeholder": "Company" }
+        },
+        "company_links": {
+          "type": "Group",
+          "config": {
+            "label": "Company Links",
+            "repeat": true,
+            "fields": {
+              "link_text": {
+                "type": "Text",
+                "config": { "label": "Link Text" }
+              },
+              "link": {
+                "type": "Link",
+                "config": { "label": "Link", "allowTargetBlank": true, "repeat": false }
+              }
+            }
+          }
+        },
+        "social_title": {
+          "type": "Text",
+          "config": { "label": "Social Column Title", "placeholder": "Social Media" }
+        },
+        "social_links": {
+          "type": "Group",
+          "config": {
+            "label": "Social Links",
+            "repeat": true,
+            "fields": {
+              "name": {
+                "type": "Text",
+                "config": { "label": "Name", "placeholder": "Facebook" }
+              },
+              "icon_class": {
+                "type": "Text",
+                "config": { "label": "Icon CSS Class", "placeholder": "fa-facebook" }
+              },
+              "url": {
+                "type": "Link",
+                "config": { "label": "URL", "allowTargetBlank": true, "repeat": false }
+              }
+            }
+          }
+        },
+        "legal_title": {
+          "type": "Text",
+          "config": { "label": "Legal Column Title", "placeholder": "Legal & Press" }
+        },
+        "legal_links": {
+          "type": "Group",
+          "config": {
+            "label": "Legal Links",
+            "repeat": true,
+            "fields": {
+              "link_text": {
+                "type": "Text",
+                "config": { "label": "Link Text" }
+              },
+              "link": {
+                "type": "Link",
+                "config": { "label": "Link", "allowTargetBlank": true, "repeat": false }
+              }
+            }
+          }
+        },
+        "copyright_text": {
+          "type": "Text",
+          "config": { "label": "Copyright Text", "placeholder": "© Company 2026" }
+        },
+        "location_text": {
+          "type": "Text",
+          "config": { "label": "Location Text", "placeholder": "Based in London, United Kingdom." }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

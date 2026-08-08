@@ -1,0 +1,45 @@
+{
+  "id": "homepage",
+  "label": "Homepage",
+  "repeatable": false,
+  "status": true,
+  "format": "page",
+  "json": {
+    "Main": {
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "labels": {},
+          "choices": {
+            "header": { "type": "SharedSlice" },
+            "hero": { "type": "SharedSlice" },
+            "about": { "type": "SharedSlice" },
+            "services": { "type": "SharedSlice" },
+            "parallax_facts": { "type": "SharedSlice" },
+            "contact_cta": { "type": "SharedSlice" },
+            "benefits": { "type": "SharedSlice" },
+            "testimonials": { "type": "SharedSlice" },
+            "how_we_work": { "type": "SharedSlice" },
+            "contact": { "type": "SharedSlice" },
+            "footer": { "type": "SharedSlice" }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "type": "Text",
+        "config": { "label": "Meta Title" }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": { "label": "Meta Description" }
+      },
+      "meta_image": {
+        "type": "Image",
+        "config": { "label": "Meta Image" }
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "contact",
+  "type": "SharedSlice",
+  "name": "Contact",
+  "description": "Contact section with contact info items, form, and map embed",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Contact form with info and map",
+      "imageUrl": "",
+      "primary": {
+        "section_id": {
+          "type": "Text",
+          "config": { "label": "Section ID (for scroll spy)", "placeholder": "contact" }
+        },
+        "caption": {
+          "type": "Text",
+          "config": { "label": "Caption", "placeholder": "Contact Us" }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": { "label": "Title", "single": "heading3" }
+        },
+        "contact_items": {
+          "type": "Group",
+          "config": {
+            "label": "Contact Info Items",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": { "label": "Title", "placeholder": "Say hello" }
+              },
+              "icon": {
+                "type": "Select",
+                "config": {
+                  "label": "Icon",
+                  "options": ["email", "phone", "location", "clock"]
+                }
+              },
+              "lines": {
+                "type": "StructuredText",
+                "config": { "label": "Contact Lines", "multi": "paragraph,strong,hyperlink" }
+              }
+            }
+          }
+        },
+        "form_title": {
+          "type": "Text",
+          "config": { "label": "Form Name Label", "placeholder": "Name" }
+        },
+        "form_email_label": {
+          "type": "Text",
+          "config": { "label": "Form Email Label", "placeholder": "Email" }
+        },
+        "form_message_label": {
+          "type": "Text",
+          "config": { "label": "Form Message Label", "placeholder": "Message" }
+        },
+        "form_button_text": {
+          "type": "Text",
+          "config": { "label": "Form Button Text", "placeholder": "Send Message" }
+        },
+        "form_tip": {
+          "type": "StructuredText",
+          "config": { "label": "Form Tip Text", "multi": "paragraph,hyperlink" }
+        },
+        "map_embed_url": {
+          "type": "Text",
+          "config": { "label": "Google Maps Embed URL" }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

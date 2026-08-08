@@ -1,48 +1,45 @@
-"use client";
-import { useEffect } from "react";
+import { SliceZone } from "@prismicio/react";
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
+import ClientEffects from "./ClientEffects";
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
+
 import "swiper/css";
-import "../public/assets/css/styles.css";
-import "jarallax/dist/jarallax.min.css";
 import "swiper/css/effect-fade";
-
 import "photoswipe/dist/photoswipe.css";
-import { usePathname } from "next/navigation";
-import { parallaxMouseMovement, parallaxScroll } from "@/utlis/parallax";
-
+import "jarallax/dist/jarallax.min.css";
 import "tippy.js/dist/tippy.css";
-import { init_wow } from "@/utlis/initWowjs";
-import { headerChangeOnScroll } from "@/utlis/changeHeaderOnScroll";
+import "../public/assets/css/styles.css";
 
-export default function RootLayout({ children }) {
-  const path = usePathname();
+export const metadata = {
+  title: {
+    default: "Lanterns & Ledgers",
+    template: "%s — Lanterns & Ledgers",
+  },
+};
 
-  useEffect(() => {
-    init_wow();
-    parallaxMouseMovement();
-    var mainNav = document.querySelector(".main-nav");
-    if (mainNav?.classList.contains("transparent")) {
-      mainNav.classList.add("js-transparent");
-    } else if (!mainNav?.classList?.contains("dark")) {
-      mainNav?.classList.add("js-no-transparent-white");
-    }
+async function getHeaderFooter() {
+  const client = createClient();
+  try {
+    const settings = await client.getSingle("settings");
+    const headerSlice = settings.data.slices.find(
+      (s) => s.slice_type === "header",
+    );
+    const footerSlice = settings.data.slices.find(
+      (s) => s.slice_type === "footer",
+    );
+    return { headerSlice, footerSlice };
+  } catch {
+    return { headerSlice: null, footerSlice: null };
+  }
+}
 
-    window.addEventListener("scroll", headerChangeOnScroll);
-    parallaxScroll();
-    return () => {
-      window.removeEventListener("scroll", headerChangeOnScroll);
-    };
-  }, [path]);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Import the script only on the client side
-      import("bootstrap/dist/js/bootstrap.esm").then(() => {
-        // Module is imported, you can access any exported functionality if
-      });
-    }
-  }, []);
+export default async function RootLayout({ children }) {
+  const { headerSlice, footerSlice } = await getHeaderFooter();
 
   return (
-    <html lang="en" className="no-mobile no-touch ">
+    <html lang="en" className="no-mobile no-touch">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
@@ -69,7 +66,21 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="appear-animate body">{children}</body>
+      <body className="appear-animate body">
+        <div className="theme-main">
+          <div className="page" id="top">
+            {headerSlice && (
+              <SliceZone slices={[headerSlice]} components={components} />
+            )}
+            <main id="main">{children}</main>
+            {footerSlice && (
+              <SliceZone slices={[footerSlice]} components={components} />
+            )}
+          </div>
+        </div>
+        <ClientEffects />
+        <PrismicPreview repositoryName={repositoryName} />
+      </body>
     </html>
   );
 }

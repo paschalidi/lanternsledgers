@@ -1,0 +1,83 @@
+{
+  "id": "hero",
+  "type": "SharedSlice",
+  "name": "Hero",
+  "description": "Homepage hero section with caption, animated title, description, CTAs, and stack images",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Hero with text on left and stack images on right",
+      "imageUrl": "",
+      "primary": {
+        "caption": {
+          "type": "Text",
+          "config": {
+            "label": "Caption",
+            "placeholder": "Resonance Creative Studio"
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "single": "heading1",
+            "allowTargetBlank": false
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "primary_button_text": {
+          "type": "Text",
+          "config": { "label": "Primary Button Text", "placeholder": "Discover now" }
+        },
+        "primary_button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Primary Button Link",
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false,
+            "variants": ["Primary"]
+          }
+        },
+        "video_link_text": {
+          "type": "Text",
+          "config": { "label": "Video Link Text", "placeholder": "How it works?" }
+        },
+        "video_id": {
+          "type": "Text",
+          "config": { "label": "YouTube Video ID", "placeholder": "jTea_8Fk5Ns" }
+        },
+        "scroll_down_text": {
+          "type": "Text",
+          "config": { "label": "Scroll Down Text", "placeholder": "Scroll Down" }
+        },
+        "stack_images": {
+          "type": "Group",
+          "config": {
+            "label": "Stack Images",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": { "width": 600, "height": 800 }
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

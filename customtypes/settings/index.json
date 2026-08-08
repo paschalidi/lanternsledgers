@@ -1,0 +1,22 @@
+{
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Header & Footer",
+        "config": {
+          "labels": {},
+          "choices": {
+            "header": { "type": "SharedSlice" },
+            "footer": { "type": "SharedSlice" }
+          }
+        }
+      }
+    }
+  }
+}

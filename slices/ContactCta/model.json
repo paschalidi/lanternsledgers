@@ -1,0 +1,31 @@
+{
+  "id": "contact_cta",
+  "type": "SharedSlice",
+  "name": "ContactCta",
+  "description": "Simple CTA section with description text and a contact button",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Centered text with CTA button",
+      "imageUrl": "",
+      "primary": {
+        "description": {
+          "type": "StructuredText",
+          "config": { "label": "Description", "multi": "paragraph,strong,em,hyperlink" }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": { "label": "CTA Button Text", "placeholder": "Contact us" }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": { "label": "CTA Link", "allowTargetBlank": true, "allowText": true, "repeat": false }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

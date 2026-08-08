@@ -1,0 +1,48 @@
+{
+  "id": "testimonials",
+  "type": "SharedSlice",
+  "name": "Testimonials",
+  "description": "Testimonials slider section with heading and testimonial cards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Testimonials carousel with Swiper",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": { "label": "Title", "single": "heading2" }
+        },
+        "testimonials": {
+          "type": "Group",
+          "config": {
+            "label": "Testimonials",
+            "repeat": true,
+            "fields": {
+              "quote": {
+                "type": "StructuredText",
+                "config": { "label": "Quote", "multi": "paragraph,strong,em,hyperlink" }
+              },
+              "author": {
+                "type": "Text",
+                "config": { "label": "Author Name", "placeholder": "Adam Peterson" }
+              },
+              "role": {
+                "type": "Text",
+                "config": { "label": "Author Role", "placeholder": "Business Owner" }
+              },
+              "image": {
+                "type": "Image",
+                "config": { "label": "Author Photo", "constraint": { "width": 88, "height": 88 } }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

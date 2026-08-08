@@ -1,0 +1,51 @@
+{
+  "id": "benefits",
+  "type": "SharedSlice",
+  "name": "Benefits",
+  "description": "Benefits section with caption, title, and feature items with icons",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Benefits grid with icon features",
+      "imageUrl": "",
+      "primary": {
+        "caption": {
+          "type": "Text",
+          "config": { "label": "Caption", "placeholder": "Primary Benefits" }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": { "label": "Title", "single": "heading3" }
+        },
+        "features": {
+          "type": "Group",
+          "config": {
+            "label": "Features",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": { "label": "Title", "placeholder": "Unique Design" }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": { "label": "Description", "multi": "paragraph,strong,em" }
+              },
+              "icon": {
+                "type": "Select",
+                "config": {
+                  "label": "Icon",
+                  "options": ["check", "star", "heart", "bolt", "shield", "rocket", "code", "palette", "camera", "chart"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

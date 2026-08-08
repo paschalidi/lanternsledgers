@@ -1,0 +1,69 @@
+{
+  "id": "how_we_work",
+  "type": "SharedSlice",
+  "name": "HowWeWork",
+  "description": "How we work section with images, FAQ accordion, and CTA button",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Images left, FAQ and CTA right",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": { "label": "Title", "single": "heading2" }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": { "label": "CTA Button Text", "placeholder": "Start a Project" }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": { "label": "CTA Link", "allowTargetBlank": true, "allowText": true, "repeat": false }
+        },
+        "images": {
+          "type": "Group",
+          "config": {
+            "label": "Section Images",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": { "label": "Image" }
+              },
+              "width": {
+                "type": "Number",
+                "config": { "label": "Display Width" }
+              },
+              "height": {
+                "type": "Number",
+                "config": { "label": "Display Height" }
+              }
+            }
+          }
+        },
+        "faq_items": {
+          "type": "Group",
+          "config": {
+            "label": "FAQ Items",
+            "repeat": true,
+            "fields": {
+              "question": {
+                "type": "Text",
+                "config": { "label": "Question", "placeholder": "01. Discussion" }
+              },
+              "answer": {
+                "type": "StructuredText",
+                "config": { "label": "Answer", "multi": "paragraph,strong,em" }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "header",
+  "type": "SharedSlice",
+  "name": "Header",
+  "description": "Site header with logo, navigation links, and CTA button",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Standard header with logo, nav, and CTA",
+      "imageUrl": "",
+      "primary": {
+        "logo_light": {
+          "type": "Image",
+          "config": {
+            "label": "Logo (Light Mode)",
+            "constraint": { "width": 210, "height": 68 }
+          }
+        },
+        "logo_dark": {
+          "type": "Image",
+          "config": {
+            "label": "Logo (Dark Mode)",
+            "constraint": { "width": 210, "height": 68 }
+          }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Text",
+            "placeholder": "Let's work together"
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Link",
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "nav_links": {
+          "type": "Group",
+          "config": {
+            "label": "Navigation Links",
+            "repeat": true,
+            "fields": {
+              "link_text": {
+                "type": "Text",
+                "config": { "label": "Link Text", "placeholder": "About" }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

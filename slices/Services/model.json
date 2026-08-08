@@ -1,0 +1,60 @@
+{
+  "id": "services",
+  "type": "SharedSlice",
+  "name": "Services",
+  "description": "Services section with tabbed interface showing service items with images",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "Tabbed services with images",
+      "imageUrl": "",
+      "primary": {
+        "section_id": {
+          "type": "Text",
+          "config": { "label": "Section ID (for scroll spy)", "placeholder": "services" }
+        },
+        "caption": {
+          "type": "Text",
+          "config": { "label": "Caption", "placeholder": "Our Services" }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": { "label": "Title", "single": "heading3" }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": { "label": "Description", "multi": "paragraph,strong,em" }
+        },
+        "services": {
+          "type": "Group",
+          "config": {
+            "label": "Services",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": { "label": "Title", "placeholder": "Brand Strategy" }
+              },
+              "number": {
+                "type": "Text",
+                "config": { "label": "Number", "placeholder": "01" }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": { "label": "Description", "multi": "paragraph,strong,em" }
+              },
+              "image": {
+                "type": "Image",
+                "config": { "label": "Image", "constraint": { "width": 945, "height": 1016 } }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

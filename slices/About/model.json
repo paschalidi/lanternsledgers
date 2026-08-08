@@ -1,0 +1,59 @@
+{
+  "id": "about",
+  "type": "SharedSlice",
+  "name": "About",
+  "description": "About section with caption, title, link, image, and mission/vision text",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "",
+      "version": "initial",
+      "description": "About section with image left and mission/vision right",
+      "imageUrl": "",
+      "primary": {
+        "section_id": {
+          "type": "Text",
+          "config": { "label": "Section ID (for scroll spy)", "placeholder": "about" }
+        },
+        "caption": {
+          "type": "Text",
+          "config": { "label": "Caption", "placeholder": "Our Story" }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": { "label": "Title", "single": "heading3" }
+        },
+        "link_text": {
+          "type": "Text",
+          "config": { "label": "Link Text", "placeholder": "Learn more about us" }
+        },
+        "link": {
+          "type": "Link",
+          "config": { "label": "Link", "allowTargetBlank": true, "allowText": true, "repeat": false }
+        },
+        "image": {
+          "type": "Image",
+          "config": { "label": "Image", "constraint": { "width": 960, "height": 539 } }
+        },
+        "mission_title": {
+          "type": "Text",
+          "config": { "label": "Mission Title", "placeholder": "Our Mission" }
+        },
+        "mission_text": {
+          "type": "StructuredText",
+          "config": { "label": "Mission Text", "multi": "paragraph,strong,em,hyperlink" }
+        },
+        "vision_title": {
+          "type": "Text",
+          "config": { "label": "Vision Title", "placeholder": "Our Vision" }
+        },
+        "vision_text": {
+          "type": "StructuredText",
+          "config": { "label": "Vision Text", "multi": "paragraph,strong,em,hyperlink" }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

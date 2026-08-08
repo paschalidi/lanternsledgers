@@ -2,31 +2,23 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
-export default async function HomePage() {
+export default async function Page({ params }) {
+  const { uid } = await params;
   const client = createClient();
 
   let page;
   try {
-    page = await client.getSingle("homepage");
+    page = await client.getByUID("page", uid);
   } catch {
     return (
       <div
         className="container text-center"
         style={{ paddingTop: "200px", paddingBottom: "200px" }}
       >
-        <h2>Homepage not published yet</h2>
+        <h2>Page not found</h2>
         <p className="text-gray">
-          Create and publish the Homepage document in Prismic to see content
-          here.
+          This page does not exist or has not been published yet.
         </p>
-        <a
-          href="https://lanternsledgers.prismic.io/builder/working"
-          className="btn btn-mod btn-large btn-round btn-hover-anim"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>Open Prismic Page Builder</span>
-        </a>
       </div>
     );
   }
@@ -38,18 +30,27 @@ export default async function HomePage() {
   return <SliceZone slices={contentSlices} components={components} />;
 }
 
-export async function generateMetadata() {
+export async function generateStaticParams() {
+  const client = createClient();
+  try {
+    const pages = await client.getAllByType("page");
+    return pages.map((page) => ({ uid: page.uid }));
+  } catch {
+    return [];
+  }
+}
+
+export async function generateMetadata({ params }) {
+  const { uid } = await params;
   const client = createClient();
 
   try {
-    const page = await client.getSingle("homepage");
+    const page = await client.getByUID("page", uid);
     return {
-      title: page.data.meta_title || "Lanterns & Ledgers",
+      title: page.data.meta_title || page.data.title || "Lanterns & Ledgers",
       description: page.data.meta_description || "",
     };
   } catch {
-    return {
-      title: "Lanterns & Ledgers",
-    };
+    return { title: "Lanterns & Ledgers" };
   }
 }
