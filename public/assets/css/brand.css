@@ -520,6 +520,81 @@ hr.white,
   color: var(--ll-navy);
 }
 
+/* --------------------------------------------------------------------------
+   Subtle motion — same entrances, much gentler travel, rotation and timing
+   -------------------------------------------------------------------------- */
+
+/* Splitting.js letter reveals: tiny rise, near-zero rotation, faster + tighter stagger */
+.appear-animate .charsAnimIn .char,
+.appear-animate .charsAnimIn-1 .char,
+.appear-animate .charsAnimIn-2 .char,
+.appear-animate .charsAnimInLong .char,
+.appear-animate .charsAnimInLong-1 .char {
+  transform: translateY(0.14em) rotate(1deg);
+  transition-duration: 0.36s;
+  transition-delay: calc(0.012s * var(--char-index));
+}
+
+/* Section entrances: shorter travel distances (keyframes re-defined here
+   override the theme's 37px versions for every usage) */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(12px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(-12px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.985) translateZ(0.1px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes scaleOutIn {
+  0% {
+    transform: scale(1.05) translateZ(0.1px);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.appear-animate .wow.scaleOutIn {
+  transform: scale(1.05);
+}
+
+/* Quicker overall entrance duration */
+.appear-animate .wow.animated,
+.appear-animate .wow-p.animated {
+  animation-duration: 0.55s !important;
+}
+
 /* Scroll-down + arrow accents */
 .scroll-down-1-icon,
 .link-to-top {
