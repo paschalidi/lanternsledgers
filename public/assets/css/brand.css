@@ -487,8 +487,23 @@ textarea:focus {
   color: var(--ll-navy);
 }
 
-/* Back-to-top arrow circle */
-.link-to-top {
-  background: var(--ll-navy);
-  color: var(--ll-paper);
+/* Back-to-top — clean circle (theme's square parent must be transparent) */
+a.link-to-top,
+footer .text-gray a.link-to-top {
+  background: transparent;
+  border-radius: 50%;
+  color: var(--ll-navy);
+}
+a.link-to-top:before,
+footer .text-gray a.link-to-top:before {
+  background: var(--ll-paper);
+  box-shadow: 0 4px 14px rgba(27, 58, 92, 0.15);
+}
+a.link-to-top:hover:before,
+footer .text-gray a.link-to-top:hover:before {
+  background: var(--ll-orange);
+}
+a.link-to-top:hover,
+footer .text-gray a.link-to-top:hover {
+  color: #ffffff;
 }
