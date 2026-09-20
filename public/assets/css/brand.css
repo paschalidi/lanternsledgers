@@ -2,7 +2,8 @@
    Lanterns & Ledgers — brand.css
    Overrides the Resonance theme with the official brand identity kit.
    Palette: Lantern Orange #F5A23C · Ledger Navy #1B3A5C · Warm Paper #F4EDE2
-            Sage Slate #6E7E72 (small print #52615A) · Ember #C8553D
+             Sage Slate #6E7E72 (small print #52615A) · Ember #C8553D
+             Lantern Black #131110 (warm near-black for dark surfaces)
    Typography: Fraunces (display) · Work Sans (body)
    Rules: body copy = Navy on white · Orange = fill/accent, never text on
    light bg · Ember = CTAs only · Cream = panels/bands only, never full page
@@ -18,15 +19,28 @@
   --ll-ember: #c8553d;
   --ll-ember-dark: #ad4630;
 
+  /* Off-white page background — a breath warmer than #fff, lighter than
+     Warm Paper (which stays reserved for panels/bands, never full pages) */
+  --ll-off-white: #fcf9f2;
+
+  /* Lantern Black — warm near-black; darker than Ledger Navy, tinted to sit
+     with the orange/paper warmth rather than a cold neutral #000 */
+  --ll-black: #131110;
+  --ll-black-2: #1c1815;
+
+  --ll-navy-dark: #16304d;
+
   /* Re-map theme variables to the brand */
   --font-global: var(--font-work-sans), "Work Sans", sans-serif;
   --font-alt: var(--font-work-sans), "Work Sans", sans-serif;
   --font-serif: var(--font-fraunces), "Fraunces", Georgia, serif;
 
   --color-dark-1: var(--ll-navy);
-  --color-dark-2: #16304d;
+  --color-dark-2: var(--ll-navy-dark);
   --color-dark-3: #12283f;
   --color-dark-4: #476283;
+  /* Theme hover-accent tone (button sweep, footer link hover, dark <pre>) */
+  --color-dark-3a: var(--ll-ember-dark);
 
   --color-gray-1: var(--ll-sage-dark);
   --color-gray-2: var(--ll-sage-dark);
@@ -50,6 +64,7 @@
 body {
   font-family: var(--font-global);
   color: var(--ll-navy);
+  background-color: var(--ll-off-white);
 }
 
 h1,
@@ -94,14 +109,32 @@ h6,
   color: var(--ll-sage-dark);
 }
 
+/* Pull-quotes / testimonials — Fraunces 400 italic (accent treatment, per kit) */
+.testimonials-slider-1 blockquote p,
+.testimonials-slider-2 blockquote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ll-navy);
+}
+.testimonials-slider-1 .blockquote-icon,
+.testimonials-slider-2 .blockquote-icon {
+  font-family: var(--font-serif);
+}
+
 /* --------------------------------------------------------------------------
-   Buttons & CTAs — Ember, white text (large-text contrast only, per kit)
+   Buttons — a two-tier system built from the kit's accessible pairs
+   Primary   .btn-mod           Ember fill, white text (CTA only, per kit)
+   Secondary .btn-mod.btn-navy  Navy fill, Paper text (AA pair)
+   Secondary .btn-mod.btn-w     Paper fill, Navy text — for dark/black bands
+   Outline   .btn-border / .btn-border-c  navy on light / paper on dark
    -------------------------------------------------------------------------- */
 
+/* Primary — Ember fill, Warm Paper text (light; AA on the ember-dark hover) */
 .btn-mod,
 a.btn-mod {
   background: var(--ll-ember);
-  color: #fff;
+  color: var(--ll-paper);
   font-family: var(--font-global);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -113,18 +146,54 @@ a.btn-mod {
 a.btn-mod:hover,
 a.btn-mod:focus {
   background: var(--ll-ember-dark);
-  color: #fff;
+  color: var(--ll-paper);
 }
 
-/* White ("w") button variant on dark bands — navy fill, paper text */
-.btn-mod.btn-w {
+/* Circle-sweep hover animation — ember-dark, not the theme's grey #333 */
+.btn-mod.btn-hover-anim:before {
+  background: var(--ll-ember-dark);
+}
+.btn-mod.btn-hover-anim:hover {
+  border-color: var(--ll-ember-dark);
+}
+
+/* Secondary solid — Ledger Navy fill, Warm Paper text (AA: Paper on Navy) */
+.btn-mod.btn-navy,
+a.btn-mod.btn-navy {
   background: var(--ll-navy);
   color: var(--ll-paper);
 }
+.btn-mod.btn-navy:hover,
+.btn-mod.btn-navy:focus,
+a.btn-mod.btn-navy:hover,
+a.btn-mod.btn-navy:focus {
+  background: var(--ll-navy-dark);
+  color: #fff;
+}
+.btn-mod.btn-navy.btn-hover-anim:before {
+  background: var(--ll-navy-dark);
+}
+.btn-mod.btn-navy.btn-hover-anim:hover {
+  border-color: var(--ll-navy-dark);
+}
+
+/* Secondary on dark bands — Warm Paper fill, Navy text (AA: Navy on Paper).
+   Hover = the lantern lights up: circle-sweep to Lantern Orange, text stays
+   Navy (AA: Navy on Orange 5.6:1, blessed pair in the kit) */
+.btn-mod.btn-w {
+  background: var(--ll-paper);
+  color: var(--ll-navy);
+}
 .btn-mod.btn-w:hover,
 .btn-mod.btn-w:focus {
-  background: var(--ll-sage-dark);
-  color: #fff;
+  background: var(--ll-orange) !important; /* beats custom.css "background: none" rule */
+  color: var(--ll-navy) !important;
+}
+.btn-mod.btn-w.btn-hover-anim:before {
+  background: var(--ll-orange);
+}
+.btn-mod.btn-w.btn-hover-anim:hover {
+  border-color: var(--ll-orange);
 }
 
 /* Ghost/outline buttons — navy outline on light, paper outline on dark */
@@ -141,13 +210,84 @@ a.btn-mod:focus {
   border-color: var(--ll-paper);
   color: var(--ll-paper);
 }
-.btn-mod.btn-border:hover {
+.btn-mod.btn-border:hover,
+.btn-mod.btn-border:focus {
   background: var(--ll-navy);
-  color: #fff;
+  color: var(--ll-paper);
 }
-.btn-mod.btn-border-c:hover {
+.btn-mod.btn-border-c:hover,
+.btn-mod.btn-border-c:focus {
   background: var(--ll-paper);
   color: var(--ll-navy);
+}
+.btn-mod.btn-border.btn-hover-anim:before,
+.btn-mod.btn-border-c.btn-hover-anim:before {
+  background: var(--ll-navy);
+}
+.btn-mod.btn-border-c.btn-hover-anim:before {
+  background: var(--ll-paper);
+}
+
+/* Keyboard focus ring — orange glow, visible on light and dark */
+.btn-mod:focus-visible,
+a.btn-mod:focus-visible {
+  outline: 2px solid var(--ll-orange);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Dark surfaces — Lantern Black utilities (use with .light-content)
+   -------------------------------------------------------------------------- */
+
+.bg-ll-black {
+  background-color: var(--ll-black) !important;
+}
+.bg-ll-black-2 {
+  background-color: var(--ll-black-2) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Header — the lantern glow: solid Lantern Orange bar, ink-navy links
+   -------------------------------------------------------------------------- */
+
+.main-nav,
+.main-nav.transparent,
+.main-nav.js-transparent {
+  background: var(--ll-orange) !important;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(27, 58, 92, 0.15);
+}
+
+/* Nav links — deep ink navy at full opacity (6.5:1 on orange, AA), with a
+   sliding underline for hover/active feedback */
+.main-nav .inner-nav > ul > li > a {
+  opacity: 1;
+  color: var(--ll-navy-dark);
+  position: relative;
+}
+.main-nav .inner-nav > ul > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(50% - 14px);
+  height: 2px;
+  background: var(--ll-navy-dark);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+.main-nav .inner-nav > ul > li > a:hover::after,
+.main-nav .inner-nav > ul > li > a.active::after {
+  transform: scaleX(1);
+}
+.main-nav .inner-nav ul li a:hover,
+.main-nav .inner-nav ul li a.active {
+  color: var(--ll-navy-dark);
+}
+
+/* CTA link in the bar — same ink navy */
+.main-nav .link-hover-anim {
+  color: var(--ll-navy-dark);
 }
 
 /* --------------------------------------------------------------------------
@@ -168,8 +308,10 @@ a:hover {
   color: var(--ll-ember);
 }
 
+/* Never recolor buttons via their .local-scroll wrappers (fixes navy text
+   leaking onto primary CTAs — Hero, ContactCta, HowWeWork) */
 .link-hover-anim,
-.local-scroll a {
+.local-scroll a:not(.btn-mod) {
   color: var(--ll-navy);
 }
 
@@ -198,16 +340,64 @@ hr.white,
   background: rgba(244, 237, 226, 0.25);
 }
 
-/* Nav active/hover states */
+/* Nav active/hover states — navy on the orange header (ember fails there) */
 .inner-nav > ul > li > a.active,
 .scroll-nav li a.active {
-  color: var(--ll-ember);
+  color: var(--ll-navy-dark);
 }
 
 /* Services tabs */
 .services-tabs .nav-link.active,
 .services-tabs a.active {
-  color: var(--ll-ember);
+  color: var(--ll-orange);
+}
+
+/* --------------------------------------------------------------------------
+   Services slice — clean card layout (replaces theme's 220px text overlap)
+   -------------------------------------------------------------------------- */
+
+.ll-services-content {
+  --services-text-overlap: 0px;
+}
+
+.ll-services-content .services-content-item {
+  min-height: 0;
+}
+
+.ll-service-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--ll-paper);
+  border-radius: 10px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(27, 58, 92, 0.08);
+}
+
+.ll-service-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ll-paper);
+  border-radius: 8px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.ll-service-media img {
+  width: 220px;
+  height: auto;
+}
+
+.ll-service-body .services-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--ll-navy);
+  margin-bottom: 0.575em;
+}
+
+.ll-service-body .text-gray {
+  color: var(--ll-sage-dark);
+  line-height: 1.65;
 }
 
 /* Scroll-down + arrow accents */
