@@ -347,6 +347,13 @@ hr.white,
 }
 
 /* Services tabs */
+.services-tabs {
+  /* theme pads right by calc(40px + 220px overlap) that no longer applies */
+  padding-right: 24px;
+}
+.services-tabs > li > a {
+  white-space: nowrap;
+}
 .services-tabs .nav-link.active,
 .services-tabs a.active {
   color: var(--ll-ember);
