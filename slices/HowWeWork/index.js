@@ -5,33 +5,50 @@ import { isFilled, asText } from "@prismicio/client";
 import { useState } from "react";
 
 function FaqAccordion({ items }) {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openItems, setOpenItems] = useState(() => new Set([0]));
+
+  const toggle = (index) => {
+    setOpenItems((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
 
   return (
     <div className="call-action-2-text mb-50 mb-sm-40">
       <dl className="accordion">
-        {items.map((item, index) => (
-          <div key={index}>
-            <dt
-              className={`toggle ${index === openIndex ? "active" : ""}`}
-              onClick={() => setOpenIndex(index === openIndex ? -1 : index)}
-              style={{ cursor: "pointer" }}
-            >
-              {item.question}
-            </dt>
-            <div
-              style={{
-                maxHeight: index === openIndex ? "500px" : "0px",
-                overflow: "hidden",
-                transition: "max-height 0.3s ease",
-              }}
-            >
-              {isFilled.richText(item.answer) && (
-                <PrismicRichText field={item.answer} />
-              )}
+        {items.map((item, index) => {
+          const isOpen = openItems.has(index);
+          return (
+            <div key={index}>
+              <dt
+                className={`toggle ${isOpen ? "active" : ""}`}
+                onClick={() => toggle(index)}
+                style={{ cursor: "pointer" }}
+              >
+                {item.question}
+              </dt>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateRows: isOpen ? "1fr" : "0fr",
+                  transition: "grid-template-rows 0.35s ease",
+                }}
+              >
+                <div style={{ overflow: "hidden" }}>
+                  {isFilled.richText(item.answer) && (
+                    <PrismicRichText field={item.answer} />
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </dl>
     </div>
   );
