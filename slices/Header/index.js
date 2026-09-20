@@ -5,7 +5,6 @@ import Link from "next/link";
 import { toggleMobileMenu, closeMobileMenu } from "@/utlis/toggleMobileMenu";
 import addScrollspy from "@/utlis/addScrollSpy";
 import { init_classic_menu_resize } from "@/utlis/menuToggle";
-import { scrollToElement } from "@/utlis/scrollToElement";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
@@ -13,9 +12,6 @@ export default function Header({ slice }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    setTimeout(() => {
-      scrollToElement();
-    }, 1000);
     init_classic_menu_resize();
     window.addEventListener("scroll", addScrollspy);
     window.addEventListener("resize", init_classic_menu_resize);
