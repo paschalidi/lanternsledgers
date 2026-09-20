@@ -461,6 +461,58 @@ hr.white,
   fill: var(--ll-orange);
 }
 
+/* --------------------------------------------------------------------------
+   Mobile menu — Warm Paper panel, navy links, ember accents
+   -------------------------------------------------------------------------- */
+
+.mobile-on .desktop-nav ul {
+  background: var(--ll-paper);
+}
+
+.mobile-on .desktop-nav ul li a {
+  color: var(--ll-navy);
+  border-bottom: 1px solid rgba(27, 58, 92, 0.08);
+}
+
+.mobile-on .desktop-nav ul li a:hover,
+.mobile-on .desktop-nav ul li a.active {
+  color: var(--ll-ember);
+}
+
+.mobile-on .desktop-nav ul li ul {
+  border-bottom: 1px solid rgba(27, 58, 92, 0.1);
+}
+
+/* Chevron circles on paper */
+.mobile-on .mn-has-sub > .mi-chevron-down,
+.mobile-on .mn-has-sub > .mi-chevron-right {
+  border: 1px solid rgba(27, 58, 92, 0.2);
+  color: var(--ll-navy);
+}
+.mobile-on .js-opened > .mn-has-sub > .mi-chevron-down,
+.mobile-on .js-opened > .mn-has-sub > .mi-chevron-right {
+  border-color: var(--ll-ember);
+  color: var(--ll-ember);
+}
+
+/* Hamburger icon — always visible on light bar */
+.main-nav .mobile-nav-icon,
+.main-nav .mobile-nav-icon:before,
+.main-nav .mobile-nav-icon:after {
+  background: var(--ll-navy);
+}
+
+/* CTA line inside mobile panel */
+.mobile-on .inner-nav .link-hover-anim {
+  color: var(--ll-ember);
+}
+
+/* Safety: scroll-down button stays dead even against cached JS */
+.scroll-down-wrap-type-1,
+.scroll-down-1 {
+  display: none !important;
+}
+
 /* Scroll-down + arrow accents */
 .scroll-down-1-icon,
 .link-to-top {
