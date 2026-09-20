@@ -413,8 +413,8 @@ hr.white,
    -------------------------------------------------------------------------- */
 
 .ll-facts {
-  padding-top: 240px;
-  padding-bottom: 240px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .ll-facts .section-title {
