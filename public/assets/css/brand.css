@@ -513,6 +513,13 @@ hr.white,
   display: none !important;
 }
 
+/* Text selection — Lantern Orange fill, Ledger Navy text (AA pair) */
+::selection,
+.light-content ::selection {
+  background: var(--ll-orange);
+  color: var(--ll-navy);
+}
+
 /* Scroll-down + arrow accents */
 .scroll-down-1-icon,
 .link-to-top {
