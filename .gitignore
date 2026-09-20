@@ -5,3 +5,8 @@ node_modules
 .idea
 
 .playwright-mcp
+# local artifacts
+.DS_Store
+**/.DS_Store
+plans/
+tmp/

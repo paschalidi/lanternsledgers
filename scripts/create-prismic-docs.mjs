@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoibWFjaGluZTJtYWNoaW5lIiwiZGJpZCI6ImxhbnRlcm5zbGVkZ2Vycy1iNWE4ZWQ0Ni1iZTcwLTQ4ODAtOWJiNi05YTQzMTRhMzU3MDhfNSIsImRhdGUiOjE3ODYxNzgwMjQsImRvbWFpbiI6ImxhbnRlcm5zbGVkZ2VycyIsImFwcE5hbWUiOiJNaWdyYXRpb24gQVBJIiwiaWF0IjoxNzg2MTc4MDI0fQ.1lc6A0681srWyHrCcId_-rqgK8MT6oQsi6qBwaQYzCk";
+const TOKEN = process.env.PRISMIC_WRITE_TOKEN || "";
 const REPO = "lanternsledgers";
 const API = "https://migration.prismic.io";
-const X_API_KEY = "cSaZlfkQlF9C6CEAM2Del6MNX9WonlV86HPbeEJL";
+const X_API_KEY = process.env.PRISMIC_MIGRATION_KEY || "";
 
 const p = (t) => [{ type: "paragraph", text: t, spans: [] }];
 const h = (t, l = "heading2") => [{ type: l, text: t, spans: [] }];
