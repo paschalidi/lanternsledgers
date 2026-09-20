@@ -373,6 +373,7 @@ hr.white,
 
 .ll-service-card {
   width: 100%;
+  max-width: 440px;
   background: #ffffff;
   border: 1px solid var(--ll-paper);
   border-radius: 10px;
