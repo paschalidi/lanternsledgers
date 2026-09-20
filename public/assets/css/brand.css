@@ -409,19 +409,15 @@ hr.white,
 }
 
 /* --------------------------------------------------------------------------
-   ParallaxFacts slice — Warm Paper band with white accented cards
+   ParallaxFacts slice — dark parallax band, Warm Paper fact cards
    -------------------------------------------------------------------------- */
 
-.ll-facts {
-  background: var(--ll-paper);
-}
-
 .ll-facts .section-title {
-  color: var(--ll-navy) !important;
+  color: var(--ll-orange) !important;
 }
 
 .ll-facts .section-descr {
-  color: var(--ll-sage-dark) !important;
+  color: rgba(244, 237, 226, 0.85) !important;
 }
 
 .ll-facts-grid {
@@ -431,8 +427,8 @@ hr.white,
 .ll-fact-card {
   height: 100%;
   padding: 28px 24px;
-  background: #ffffff;
-  box-shadow: 0 6px 18px rgba(27, 58, 92, 0.07);
+  background: var(--ll-paper);
+  box-shadow: 0 10px 30px rgba(11, 24, 40, 0.35);
   border-left: 3px solid var(--ll-orange);
 }
 

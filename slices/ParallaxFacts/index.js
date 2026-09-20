@@ -2,14 +2,26 @@
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicText } from "@prismicio/react";
 import { isFilled } from "@prismicio/client";
+import ParallaxContainer from "@/components/common/ParallaxContainer";
 
 export default function ParallaxFacts({ slice }) {
   const facts = isFilled.group(slice.primary.facts)
     ? slice.primary.facts
     : [];
+  const bgStyle = isFilled.image(slice.primary.background_image)
+    ? {
+        backgroundImage: `url(${slice.primary.background_image.url})`,
+      }
+    : {
+        backgroundImage:
+          "url(/assets/images/full-width-images/section-bg-2.jpg)",
+      };
 
   return (
-    <section className="page-section ll-facts">
+    <ParallaxContainer
+      className="page-section bg-dark-1 bg-dark-alpha-90 parallax-5 light-content ll-facts"
+      style={bgStyle}
+    >
       <div className="container position-relative">
         <div className="row">
           <div className="col-lg-4 mb-md-60 mb-xs-50">
@@ -54,6 +66,6 @@ export default function ParallaxFacts({ slice }) {
           )}
         </div>
       </div>
-    </section>
+    </ParallaxContainer>
   );
 }
