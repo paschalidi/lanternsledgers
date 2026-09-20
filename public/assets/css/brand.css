@@ -408,11 +408,19 @@ hr.white,
 }
 
 /* --------------------------------------------------------------------------
-   ParallaxFacts slice — clean card grid on the dark band
+   ParallaxFacts slice — Warm Paper band with white accented cards
    -------------------------------------------------------------------------- */
 
+.ll-facts {
+  background: var(--ll-paper);
+}
+
 .ll-facts .section-title {
-  color: var(--ll-orange) !important;
+  color: var(--ll-navy) !important;
+}
+
+.ll-facts .section-descr {
+  color: var(--ll-sage-dark) !important;
 }
 
 .ll-facts-grid {
@@ -422,9 +430,9 @@ hr.white,
 .ll-fact-card {
   height: 100%;
   padding: 28px 24px;
-  background: rgba(27, 58, 92, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(27, 58, 92, 0.07);
+  border-left: 3px solid var(--ll-orange);
 }
 
 .ll-fact-card .number-title {
@@ -436,11 +444,11 @@ hr.white,
   /* reserve two lines so every description starts at the same height */
   min-height: 78px;
   margin-bottom: 8px;
-  color: var(--ll-orange);
+  color: var(--ll-navy);
 }
 
 .ll-fact-card .number-descr {
-  color: rgba(244, 237, 226, 0.9);
+  color: var(--ll-sage-dark);
   line-height: 1.6;
 }
 
