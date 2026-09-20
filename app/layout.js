@@ -4,6 +4,7 @@ import { components } from "@/slices";
 import ClientEffects from "./ClientEffects";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
+import { Fraunces, Work_Sans } from "next/font/google";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -11,12 +12,30 @@ import "photoswipe/dist/photoswipe.css";
 import "jarallax/dist/jarallax.min.css";
 import "tippy.js/dist/tippy.css";
 import "../public/assets/css/styles.css";
+import "../public/assets/css/brand.css";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-work-sans",
+  display: "swap",
+});
 
 export const metadata = {
   title: {
-    default: "Lanterns & Ledgers",
+    default: "Lanterns & Ledgers — A Guiding Light on Finance",
     template: "%s — Lanterns & Ledgers",
   },
+  description:
+    "Fractional finance director for values-led businesses, growing founders, charities and CICs. Understand what your numbers are telling you.",
 };
 
 async function getHeaderFooter() {
@@ -39,33 +58,10 @@ export default async function RootLayout({ children }) {
   const { headerSlice, footerSlice } = await getHeaderFooter();
 
   return (
-    <html lang="en" className="no-mobile no-touch">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400;1,500&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500&family=Poppins&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`no-mobile no-touch ${fraunces.variable} ${workSans.variable}`}
+    >
       <body className="appear-animate body">
         <div className="theme-main">
           <div className="page" id="top">

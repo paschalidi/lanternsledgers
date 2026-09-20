@@ -1,0 +1,260 @@
+/* ==========================================================================
+   Lanterns & Ledgers — brand.css
+   Overrides the Resonance theme with the official brand identity kit.
+   Palette: Lantern Orange #F5A23C · Ledger Navy #1B3A5C · Warm Paper #F4EDE2
+            Sage Slate #6E7E72 (small print #52615A) · Ember #C8553D
+   Typography: Fraunces (display) · Work Sans (body)
+   Rules: body copy = Navy on white · Orange = fill/accent, never text on
+   light bg · Ember = CTAs only · Cream = panels/bands only, never full page
+   ========================================================================== */
+
+:root {
+  /* Brand tokens */
+  --ll-orange: #f5a23c;
+  --ll-navy: #1b3a5c;
+  --ll-paper: #f4ede2;
+  --ll-sage: #6e7e72;
+  --ll-sage-dark: #52615a;
+  --ll-ember: #c8553d;
+  --ll-ember-dark: #ad4630;
+
+  /* Re-map theme variables to the brand */
+  --font-global: var(--font-work-sans), "Work Sans", sans-serif;
+  --font-alt: var(--font-work-sans), "Work Sans", sans-serif;
+  --font-serif: var(--font-fraunces), "Fraunces", Georgia, serif;
+
+  --color-dark-1: var(--ll-navy);
+  --color-dark-2: #16304d;
+  --color-dark-3: #12283f;
+  --color-dark-4: #476283;
+
+  --color-gray-1: var(--ll-sage-dark);
+  --color-gray-2: var(--ll-sage-dark);
+  --color-gray-3: var(--ll-sage);
+
+  --color-gray-light-1: var(--ll-paper);
+  --color-gray-light-2: #faf6ee;
+  --color-gray-light-3: #e9dfcd;
+  --color-gray-light-4: #ddd0b8;
+
+  --color-primary-1: var(--ll-ember);
+  --color-primary-1-a: var(--ll-ember-dark);
+  --color-primary-light-1: #f8e3dc;
+  --color-primary-light-1-a: #f0c8bb;
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+
+body {
+  font-family: var(--font-global);
+  color: var(--ll-navy);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.hs-title-1,
+.hs-title-2,
+.hs-title-3,
+.section-title,
+.section-title-small,
+.section-title-tiny,
+.fw-title,
+.services-title,
+.alt-features-title {
+  font-family: var(--font-serif) !important;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Signature treatment: italic tagline in Lantern Orange (large text only) */
+.tagline-italic,
+.serif-brand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ll-orange);
+}
+
+/* Captions / eyebrows — sage, darkened for AA on small text */
+.section-caption {
+  color: var(--ll-sage-dark);
+  font-family: var(--font-global);
+  letter-spacing: 0.09em;
+}
+
+/* Muted / secondary text */
+.text-gray,
+.section-descr {
+  color: var(--ll-sage-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons & CTAs — Ember, white text (large-text contrast only, per kit)
+   -------------------------------------------------------------------------- */
+
+.btn-mod,
+a.btn-mod {
+  background: var(--ll-ember);
+  color: #fff;
+  font-family: var(--font-global);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+}
+
+.btn-mod:hover,
+.btn-mod:focus,
+a.btn-mod:hover,
+a.btn-mod:focus {
+  background: var(--ll-ember-dark);
+  color: #fff;
+}
+
+/* White ("w") button variant on dark bands — navy fill, paper text */
+.btn-mod.btn-w {
+  background: var(--ll-navy);
+  color: var(--ll-paper);
+}
+.btn-mod.btn-w:hover,
+.btn-mod.btn-w:focus {
+  background: var(--ll-sage-dark);
+  color: #fff;
+}
+
+/* Ghost/outline buttons — navy outline on light, paper outline on dark */
+.btn-mod.btn-border,
+.btn-mod.btn-border-c {
+  background: transparent;
+}
+.btn-mod.btn-border {
+  border-color: var(--ll-navy);
+  color: var(--ll-navy);
+}
+.light-content .btn-mod.btn-border-c,
+.btn-mod.btn-border-c {
+  border-color: var(--ll-paper);
+  color: var(--ll-paper);
+}
+.btn-mod.btn-border:hover {
+  background: var(--ll-navy);
+  color: #fff;
+}
+.btn-mod.btn-border-c:hover {
+  background: var(--ll-paper);
+  color: var(--ll-navy);
+}
+
+/* --------------------------------------------------------------------------
+   Links — navy, ember on hover
+   -------------------------------------------------------------------------- */
+
+a {
+  color: var(--ll-navy);
+}
+a:hover {
+  color: var(--ll-ember);
+}
+
+.text-gray a {
+  color: var(--ll-navy);
+}
+.text-gray a:hover {
+  color: var(--ll-ember);
+}
+
+.link-hover-anim,
+.local-scroll a {
+  color: var(--ll-navy);
+}
+
+/* --------------------------------------------------------------------------
+   Accents — orange as fill only
+   -------------------------------------------------------------------------- */
+
+/* Testimonial/heading highlighter swash */
+.mark-decoration-1 {
+  background-image: linear-gradient(
+    100deg,
+    rgba(245, 162, 60, 0.55) 0%,
+    rgba(245, 162, 60, 0.25) 100%
+  );
+}
+
+/* Section divider lines */
+.section-line,
+.hr,
+hr {
+  background: var(--ll-paper);
+  border-color: var(--ll-paper);
+}
+hr.white,
+.light-content hr {
+  background: rgba(244, 237, 226, 0.25);
+}
+
+/* Nav active/hover states */
+.inner-nav > ul > li > a.active,
+.scroll-nav li a.active {
+  color: var(--ll-ember);
+}
+
+/* Services tabs */
+.services-tabs .nav-link.active,
+.services-tabs a.active {
+  color: var(--ll-ember);
+}
+
+/* Scroll-down + arrow accents */
+.scroll-down-1-icon,
+.link-to-top {
+  color: var(--ll-navy);
+}
+
+/* Forms */
+input,
+textarea,
+select {
+  font-family: var(--font-global);
+  color: var(--ll-navy);
+}
+input:focus,
+textarea:focus {
+  border-color: var(--ll-sage) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.footer {
+  background: var(--ll-paper);
+}
+.footer .fw-title {
+  color: var(--ll-navy);
+  font-family: var(--font-serif);
+}
+.footer .fw-menu a {
+  color: var(--ll-sage-dark);
+}
+.footer .fw-menu a:hover {
+  color: var(--ll-ember);
+}
+.footer .text-gray,
+.footer .clearlinks {
+  color: var(--ll-sage-dark);
+}
+.footer .clearlinks a {
+  color: var(--ll-navy);
+}
+
+/* Back-to-top arrow circle */
+.link-to-top {
+  background: var(--ll-navy);
+  color: var(--ll-paper);
+}
