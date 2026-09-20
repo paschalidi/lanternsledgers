@@ -437,6 +437,13 @@ hr.white,
   line-height: 1.6;
 }
 
+/* Feature icons — Lantern Orange (fill/accent only, per brand kit) */
+.alt-features-icon,
+.alt-features-icon svg {
+  color: var(--ll-orange);
+  fill: var(--ll-orange);
+}
+
 /* Scroll-down + arrow accents */
 .scroll-down-1-icon,
 .link-to-top {
