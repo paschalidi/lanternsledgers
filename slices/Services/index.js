@@ -16,7 +16,7 @@ export default function Services({ slice }) {
     <section className="page-section scrollSpysection" id={sectionId}>
       <div className="container position-relative">
         <div className="row">
-          <div className="col-lg-6 pe-lg-5 mb-md-60 mb-sm-30">
+          <div className="col-lg-7 pe-lg-5 mb-md-60 mb-sm-30">
             {isFilled.keyText(slice.primary.caption) && (
               <h2 className="section-caption mb-xs-10">
                 {slice.primary.caption}
@@ -68,7 +68,7 @@ export default function Services({ slice }) {
             )}
           </div>
           <div
-            className="col-lg-6 ps-lg-4 d-flex wow fadeInLeft"
+            className="col-lg-5 ps-lg-4 d-flex wow fadeInLeft"
             data-wow-delay="0.55s"
             data-wow-offset={275}
           >
