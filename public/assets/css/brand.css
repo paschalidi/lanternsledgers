@@ -400,6 +400,36 @@ hr.white,
   line-height: 1.65;
 }
 
+/* --------------------------------------------------------------------------
+   ParallaxFacts slice — clean card grid on the dark band
+   -------------------------------------------------------------------------- */
+
+.ll-facts-grid {
+  row-gap: 1.5rem;
+}
+
+.ll-fact-card {
+  height: 100%;
+  padding: 28px 24px;
+  background: rgba(27, 58, 92, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 162, 60, 0.25);
+  border-radius: 8px;
+}
+
+.ll-fact-card .number-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--ll-orange);
+}
+
+.ll-fact-card .number-descr {
+  color: rgba(244, 237, 226, 0.9);
+  line-height: 1.6;
+}
+
 /* Scroll-down + arrow accents */
 .scroll-down-1-icon,
 .link-to-top {

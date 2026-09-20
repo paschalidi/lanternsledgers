@@ -54,21 +54,21 @@ export default function ParallaxFacts({ slice }) {
           </div>
           {facts.length > 0 && (
             <div className="col-lg-7 offset-lg-1">
-              <div className="row mt-n50 mt-xs-n30">
+              <div className="row g-4 ll-facts-grid">
                 {facts.map((fact, index) => (
                   <div
                     key={index}
-                    className={`col-sm-6 col-lg-5 mt-50 mt-xs-30 wow fadeScaleIn ${
-                      index % 2 !== 0 ? "offset-lg-2" : ""
-                    }`}
-                    data-wow-delay={`${0.4 + index * 0.2}s`}
+                    className="col-sm-6 col-md-4 wow fadeScaleIn"
+                    data-wow-delay={`${0.4 + index * 0.15}s`}
                   >
-                    {fact.title && (
-                      <div className="number-title mb-10">{fact.title}</div>
-                    )}
-                    {fact.description && (
-                      <div className="number-descr">{fact.description}</div>
-                    )}
+                    <div className="ll-fact-card">
+                      {fact.title && (
+                        <div className="number-title mb-10">{fact.title}</div>
+                      )}
+                      {fact.description && (
+                        <div className="number-descr">{fact.description}</div>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
