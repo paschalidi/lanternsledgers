@@ -111,23 +111,6 @@ export default function Hero({ slice }) {
             )}
           </div>
         </div>
-        {isFilled.keyText(slice.primary.scroll_down_text) && (
-          <div
-            className="local-scroll scroll-down-wrap-type-1 wow fadeInUp"
-            data-wow-offset={0}
-          >
-            <div className="container">
-              <a href="#about" className="scroll-down-1">
-                <div className="scroll-down-1-icon">
-                  <i className="mi-arrow-down" />
-                </div>
-                <div className="scroll-down-1-text">
-                  {slice.primary.scroll_down_text}
-                </div>
-              </a>
-            </div>
-          </div>
-        )}
       </div>
       {isFilled.keyText(slice.primary.video_id) && (
         <ModalVideo

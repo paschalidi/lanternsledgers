@@ -412,6 +412,11 @@ hr.white,
    ParallaxFacts slice — dark parallax band, Warm Paper fact cards
    -------------------------------------------------------------------------- */
 
+.ll-facts {
+  padding-top: 190px;
+  padding-bottom: 190px;
+}
+
 .ll-facts .section-title {
   color: var(--ll-orange) !important;
 }
