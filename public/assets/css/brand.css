@@ -404,8 +404,12 @@ hr.white,
    ParallaxFacts slice — clean card grid on the dark band
    -------------------------------------------------------------------------- */
 
+.ll-facts .section-title {
+  color: var(--ll-orange) !important;
+}
+
 .ll-facts-grid {
-  row-gap: 1.5rem;
+  row-gap: 2rem;
 }
 
 .ll-fact-card {
@@ -414,14 +418,17 @@ hr.white,
   background: rgba(27, 58, 92, 0.55);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(245, 162, 60, 0.25);
-  border-radius: 8px;
 }
 
 .ll-fact-card .number-title {
+  display: block;
   font-family: var(--font-serif);
   font-weight: 600;
   font-size: 30px;
+  line-height: 1.3;
+  /* reserve two lines so every description starts at the same height */
+  min-height: 78px;
+  margin-bottom: 8px;
   color: var(--ll-orange);
 }
 

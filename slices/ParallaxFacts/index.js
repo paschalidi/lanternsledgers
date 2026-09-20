@@ -19,7 +19,7 @@ export default function ParallaxFacts({ slice }) {
 
   return (
     <ParallaxContainer
-      className="page-section bg-dark-1 bg-dark-alpha-90 parallax-5 light-content"
+      className="page-section bg-dark-1 bg-dark-alpha-90 parallax-5 light-content ll-facts"
       style={bgStyle}
     >
       <div className="container position-relative">
