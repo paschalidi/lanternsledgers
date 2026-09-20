@@ -349,7 +349,7 @@ hr.white,
 /* Services tabs */
 .services-tabs .nav-link.active,
 .services-tabs a.active {
-  color: var(--ll-orange);
+  color: var(--ll-ember);
 }
 
 /* --------------------------------------------------------------------------

@@ -3,12 +3,14 @@ import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, PrismicText } from "@prismicio/react";
 import { isFilled, asText } from "@prismicio/client";
 import AnimatedText from "@/components/common/AnimatedText";
+import { useState } from "react";
 
 export default function Services({ slice }) {
   const sectionId = slice.primary.section_id || "services";
   const services = isFilled.group(slice.primary.services)
     ? slice.primary.services
     : [];
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <section className="page-section scrollSpysection" id={sectionId}>
@@ -47,11 +49,13 @@ export default function Services({ slice }) {
                   <li role="presentation" key={index}>
                     <a
                       href={`#services-item-${index}`}
-                      className={index === 0 ? "active" : ""}
-                      aria-controls={`services-item-${index}`}
+                      className={index === activeTab ? "active" : ""}
                       role="tab"
-                      aria-selected={index === 0 ? "true" : "false"}
-                      data-bs-toggle="tab"
+                      aria-selected={index === activeTab ? "true" : "false"}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setActiveTab(index);
+                      }}
                     >
                       {service.title}{" "}
                       {service.number && (
@@ -74,7 +78,7 @@ export default function Services({ slice }) {
                   <div
                     key={index}
                     className={`tab-pane services-content-item ${
-                      index === 0 ? "show fade active" : ""
+                      index === activeTab ? "show fade active" : ""
                     }`}
                     id={`services-item-${index}`}
                     role="tabpanel"
