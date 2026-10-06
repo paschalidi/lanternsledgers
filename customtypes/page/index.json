@@ -1,54 +1,92 @@
 {
-  "id": "page",
-  "label": "Page",
-  "repeatable": true,
-  "status": true,
   "format": "page",
+  "id": "page",
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
-        "config": { "label": "UID" }
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
       },
       "title": {
-        "type": "Text",
-        "config": { "label": "Title", "useAsTitle": true }
+        "config": {
+          "label": "Title",
+          "useAsTitle": true
+        },
+        "type": "Text"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
-          "labels": {},
           "choices": {
-            "page_header": { "type": "SharedSlice" },
-            "header": { "type": "SharedSlice" },
-            "footer": { "type": "SharedSlice" },
-            "hero": { "type": "SharedSlice" },
-            "about": { "type": "SharedSlice" },
-            "services": { "type": "SharedSlice" },
-            "parallax_facts": { "type": "SharedSlice" },
-            "contact_cta": { "type": "SharedSlice" },
-            "benefits": { "type": "SharedSlice" },
-            "testimonials": { "type": "SharedSlice" },
-            "how_we_work": { "type": "SharedSlice" },
-            "contact": { "type": "SharedSlice" }
-          }
-        }
+            "page_header": {
+              "type": "SharedSlice"
+            },
+            "header": {
+              "type": "SharedSlice"
+            },
+            "footer": {
+              "type": "SharedSlice"
+            },
+            "hero": {
+              "type": "SharedSlice"
+            },
+            "about": {
+              "type": "SharedSlice"
+            },
+            "services": {
+              "type": "SharedSlice"
+            },
+            "parallax_facts": {
+              "type": "SharedSlice"
+            },
+            "contact_cta": {
+              "type": "SharedSlice"
+            },
+            "benefits": {
+              "type": "SharedSlice"
+            },
+            "testimonials": {
+              "type": "SharedSlice"
+            },
+            "how_we_work": {
+              "type": "SharedSlice"
+            },
+            "contact": {
+              "type": "SharedSlice"
+            },
+            "service_list": {
+              "type": "SharedSlice"
+            }
+          },
+          "labels": {}
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
       "meta_title": {
-        "type": "Text",
-        "config": { "label": "Meta Title" }
+        "config": {
+          "label": "Meta Title"
+        },
+        "type": "Text"
       },
       "meta_description": {
-        "type": "Text",
-        "config": { "label": "Meta Description" }
+        "config": {
+          "label": "Meta Description"
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
-        "config": { "label": "Meta Image" }
+        "config": {
+          "label": "Meta Image"
+        },
+        "type": "Image"
       }
     }
-  }
+  },
+  "label": "Page",
+  "repeatable": true,
+  "status": true
 }

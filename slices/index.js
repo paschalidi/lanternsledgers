@@ -10,6 +10,7 @@ import Hero from "./Hero";
 import HowWeWork from "./HowWeWork";
 import PageHeader from "./PageHeader";
 import ParallaxFacts from "./ParallaxFacts";
+import ServiceList from "./ServiceList";
 import Services from "./Services";
 import Testimonials from "./Testimonials";
 
@@ -24,6 +25,7 @@ export const components = {
 	how_we_work: HowWeWork,
 	page_header: PageHeader,
 	parallax_facts: ParallaxFacts,
+	service_list: ServiceList,
 	services: Services,
 	testimonials: Testimonials
 };

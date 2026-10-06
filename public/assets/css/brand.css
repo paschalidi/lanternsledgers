@@ -949,3 +949,61 @@ footer .text-gray a.link-to-top:hover {
 .legal-content a:focus {
   color: var(--ll-orange);
 }
+
+/* --------------------------------------------------------------------------
+   ServiceList slice — the ledger of services
+   A long prose list turned into a two-column scannable ledger: hairline rows,
+   a lantern dot per label, short descriptions. Built for skimming.
+   -------------------------------------------------------------------------- */
+
+.ll-servicelist-lead {
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ll-sage-dark);
+  max-width: 62ch;
+}
+.ll-servicelist-lead p:last-child {
+  margin-bottom: 0;
+}
+
+.ll-servicelist-grid {
+  list-style: none;
+  margin: 56px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  column-gap: 64px;
+}
+
+.ll-servicelist-item {
+  padding: 22px 0;
+  border-top: 1px solid var(--color-gray-light-3);
+}
+
+.ll-servicelist-label {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--ll-navy);
+  margin: 0 0 6px;
+}
+.ll-servicelist-label::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ll-orange);
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.ll-servicelist-text {
+  color: var(--ll-sage-dark);
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 46ch;
+}
+.ll-servicelist-text p:last-child {
+  margin-bottom: 0;
+}

@@ -144,7 +144,7 @@ interface LegalDocumentData {
  */
 export type LegalDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<LegalDocumentData>, "legal", Lang>;
 
-type PageDocumentDataSlicesSlice = PageHeaderSlice | HeaderSlice | FooterSlice | HeroSlice | AboutSlice | ServicesSlice | ParallaxFactsSlice | ContactCtaSlice | BenefitsSlice | TestimonialsSlice | HowWeWorkSlice | ContactSlice
+type PageDocumentDataSlicesSlice = PageHeaderSlice | HeaderSlice | FooterSlice | HeroSlice | AboutSlice | ServicesSlice | ParallaxFactsSlice | ContactCtaSlice | BenefitsSlice | TestimonialsSlice | HowWeWorkSlice | ContactSlice | ServiceListSlice
 
 /**
  * Content for Page documents
@@ -585,6 +585,16 @@ export interface ContactSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	form_button_text: prismic.KeyTextField;
+	
+	/**
+	 * Form Success Message field in *Contact → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Thank you. Your message is on its way, and I'll come back to you personally.
+	 * - **API ID Path**: contact.default.primary.form_success_message
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	form_success_message: prismic.KeyTextField;
 	
 	/**
 	 * Form Tip Text field in *Contact → Default → Primary*
@@ -1507,6 +1517,99 @@ type ParallaxFactsSliceVariation = ParallaxFactsSliceDefault
 export type ParallaxFactsSlice = prismic.SharedSlice<"parallax_facts", ParallaxFactsSliceVariation>;
 
 /**
+ * Item in *ServiceList → Default → Primary → Service Items*
+ */
+export interface ServiceListSliceDefaultPrimaryItemsItem {
+	/**
+	 * Label field in *ServiceList → Default → Primary → Service Items*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Bookkeeping
+	 * - **API ID Path**: service_list.default.primary.items[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+	
+	/**
+	 * Description field in *ServiceList → Default → Primary → Service Items*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: service_list.default.primary.items[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *ServiceList → Default → Primary*
+ */
+export interface ServiceListSliceDefaultPrimary {
+	/**
+	 * Caption field in *ServiceList → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Operations
+	 * - **API ID Path**: service_list.default.primary.caption
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	caption: prismic.KeyTextField;
+	
+	/**
+	 * Title field in *ServiceList → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: service_list.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+	
+	/**
+	 * Lead paragraph field in *ServiceList → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: service_list.default.primary.lead
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	lead: prismic.RichTextField;
+	
+	/**
+	 * Service Items field in *ServiceList → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: service_list.default.primary.items[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	items: prismic.GroupField<Simplify<ServiceListSliceDefaultPrimaryItemsItem>>;
+}
+
+/**
+ * Default variation for ServiceList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ServiceListSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ServiceListSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *ServiceList*
+ */
+type ServiceListSliceVariation = ServiceListSliceDefault
+
+/**
+ * ServiceList Shared Slice
+ *
+ * - **API ID**: `service_list`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ServiceListSlice = prismic.SharedSlice<"service_list", ServiceListSliceVariation>;
+
+/**
  * Item in *Services → Default → Primary → Services*
  */
 export interface ServicesSliceDefaultPrimaryServicesItem {
@@ -1799,6 +1902,11 @@ declare module "@prismicio/client" {
 			ParallaxFactsSliceDefaultPrimary,
 			ParallaxFactsSliceVariation,
 			ParallaxFactsSliceDefault,
+			ServiceListSlice,
+			ServiceListSliceDefaultPrimaryItemsItem,
+			ServiceListSliceDefaultPrimary,
+			ServiceListSliceVariation,
+			ServiceListSliceDefault,
 			ServicesSlice,
 			ServicesSliceDefaultPrimaryServicesItem,
 			ServicesSliceDefaultPrimary,

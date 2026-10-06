@@ -1,0 +1,60 @@
+{
+  "id": "service_list",
+  "name": "ServiceList",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "caption": {
+          "config": {
+            "label": "Caption",
+            "placeholder": "Operations"
+          },
+          "type": "Text"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "single": "heading3"
+          },
+          "type": "StructuredText"
+        },
+        "lead": {
+          "config": {
+            "label": "Lead paragraph",
+            "multi": "paragraph,strong,em"
+          },
+          "type": "StructuredText"
+        },
+        "items": {
+          "config": {
+            "fields": {
+              "label": {
+                "config": {
+                  "label": "Label",
+                  "placeholder": "Bookkeeping"
+                },
+                "type": "Text"
+              },
+              "description": {
+                "config": {
+                  "label": "Description",
+                  "multi": "paragraph,strong,em,hyperlink"
+                },
+                "type": "StructuredText"
+              }
+            },
+            "label": "Service Items"
+          },
+          "type": "Group"
+        }
+      },
+      "version": ""
+    }
+  ]
+}
