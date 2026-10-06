@@ -430,117 +430,77 @@ hr.white,
 }
 
 /* --------------------------------------------------------------------------
-   Contact slice — the Lantern Desk
-   Form on a white panel left, Prismic-controlled image right, mounted on a
-   Warm Paper matte. The image is in-flow and fills its column (same rule
-   as the single hero image — never absolutely positioned).
+   Contact slice — the Ledger Panel
+   Naked form on the page (no card), deep navy info panel on the right:
+   image first (no matte), contact details as a hairline list, optional map.
    -------------------------------------------------------------------------- */
 
-.ll-contact-panel {
-  background: #ffffff;
+/* — Form — Warm Paper panel (brand rule: cream is for panels, never pages) */
+.ll-contact-form {
+  background: var(--ll-paper);
   border-radius: 16px;
-  padding: clamp(24px, 4vw, 44px);
-  box-shadow:
-    0 1px 2px rgba(19, 17, 16, 0.04),
-    0 16px 40px rgba(27, 58, 92, 0.09);
+  padding: clamp(24px, 4vw, 40px);
+  box-shadow: 0 16px 40px rgba(27, 58, 92, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.ll-contact-form form {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+.ll-contact-form .ll-form-footer {
+  margin-top: auto;
 }
 
-/* Labels — quieter than the template's 18px */
-.ll-contact-panel .form label {
+.ll-contact-form .form label {
   font-size: 15px;
   font-weight: 600;
   color: var(--ll-navy);
   margin-bottom: 9px;
 }
 
-/* Inputs — Warm Paper wells; a lantern glow on focus.
-   Selector shape mirrors .form input[type=...] (0,2,1) + panel class to win. */
-.ll-contact-panel .form input[type="text"],
-.ll-contact-panel .form input[type="email"],
-.ll-contact-panel .form input[type="tel"],
-.ll-contact-panel .form textarea {
-  background: var(--ll-off-white);
+/* Inputs — white on the page; a lantern glow on focus.
+   Selector shape mirrors .form input[type=...] (0,2,1) + scope to win. */
+.ll-contact-form .form input[type="text"],
+.ll-contact-form .form input[type="email"],
+.ll-contact-form .form input[type="tel"],
+.ll-contact-form .form textarea {
+  background: #ffffff;
   border: 1px solid var(--color-gray-light-3);
   border-radius: 10px;
   color: var(--ll-navy);
 }
-.ll-contact-panel .form-control::placeholder {
+.ll-contact-form .form-control::placeholder {
   color: var(--ll-sage-dark);
   opacity: 1;
 }
-.ll-contact-panel .form input[type="text"]:focus,
-.ll-contact-panel .form input[type="email"]:focus,
-.ll-contact-panel .form input[type="tel"]:focus,
-.ll-contact-panel .form textarea:focus {
+.ll-contact-form .form input[type="text"]:focus,
+.ll-contact-form .form input[type="email"]:focus,
+.ll-contact-form .form input[type="tel"]:focus,
+.ll-contact-form .form textarea:focus {
   border-color: var(--ll-navy) !important;
   background: #ffffff;
   box-shadow: 0 0 0 4px rgba(245, 162, 60, 0.28);
   outline: none;
 }
 
-/* Image — fills the column, mounted on a Warm Paper matte */
-.ll-contact-figure {
-  margin: 0 0 28px;
-  background: var(--ll-paper);
-  padding: 10px;
-  border-radius: 16px;
-}
-.ll-contact-image {
-  border-radius: 8px;
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Contact details — quiet stacked list with circular icon badges */
-.ll-contact-details {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.ll-contact-details-solo {
-  margin-top: 8px;
-}
-.ll-contact-detail {
+.ll-form-footer {
   display: flex;
-  gap: 16px;
+  flex-direction: column;
   align-items: flex-start;
-  padding: 18px 0;
+  gap: 16px;
 }
-.ll-contact-detail:first-child {
-  padding-top: 0;
+.ll-form-footer .btn {
+  min-width: 200px;
 }
-.ll-contact-detail + .ll-contact-detail {
-  border-top: 1px solid var(--color-gray-light-2);
-}
-.ll-contact-icon {
-  flex: 0 0 auto;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--ll-paper);
-  color: var(--ll-navy);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.ll-contact-detail-title {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 19px;
-  color: var(--ll-navy);
-  margin: 0 0 4px;
-}
-.ll-contact-detail-lines {
-  color: var(--ll-sage-dark);
-  font-size: 16px;
+.ll-form-tip {
+  margin: 0;
+  font-size: 14px;
   line-height: 1.6;
-}
-.ll-contact-detail-lines a {
-  color: var(--ll-navy);
-}
-.ll-contact-detail-lines a:hover {
-  color: var(--ll-ember);
+  color: var(--ll-sage-dark);
+  max-width: 46ch;
 }
 
 /* Form results — feedback in the live region under the button */
@@ -560,14 +520,82 @@ hr.white,
   color: #8a3a28;
 }
 
-/* Optional map below the details */
+/* — Ledger panel — */
+.ll-contact-panel {
+  background: var(--ll-navy);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(27, 58, 92, 0.18);
+  height: 100%;
+}
+
+/* Image — in-flow, fills the panel, no matte */
+.ll-contact-figure {
+  margin: 0 0 24px;
+}
+.ll-contact-image {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Details — hairline list on navy */
+.ll-contact-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ll-contact-detail {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 0;
+}
+.ll-contact-detail:first-child {
+  padding-top: 0;
+}
+.ll-contact-detail + .ll-contact-detail {
+  border-top: 1px solid rgba(244, 237, 226, 0.14);
+}
+.ll-contact-icon {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(244, 237, 226, 0.12);
+  color: var(--ll-paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ll-contact-detail-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--ll-paper);
+  margin: 0 0 4px;
+}
+.ll-contact-detail-lines {
+  color: rgba(244, 237, 226, 0.75);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.ll-contact-detail-lines a {
+  color: #ffffff;
+}
+.ll-contact-detail-lines a:hover {
+  color: var(--ll-orange);
+}
+
+/* Optional map inside the panel */
 .ll-contact-map {
-  margin-top: 28px;
+  margin-top: 24px;
 }
 .ll-contact-map iframe {
   width: 100%;
   display: block;
-  border-radius: 16px;
+  border-radius: 10px;
 }
 
 /* --------------------------------------------------------------------------
@@ -850,11 +878,11 @@ footer .text-gray a.link-to-top:hover {
   vertical-align: middle;
 }
 /* Light blue vertical divider between the CTA text and the LinkedIn icon,
-   vertically centered against the full menu bar height */
+   vertically centered against the menu bar height */
 .nav-cta-divider-wrap {
   display: flex;
   align-items: center;
-  height: var(--menu-bar-height);
+  align-self: stretch;
 }
 .nav-cta-divider {
   display: block;
@@ -863,17 +891,22 @@ footer .text-gray a.link-to-top:hover {
   background: var(--ll-navy-dark);
   opacity: 0.45;
 }
-/* Refined hover — gentle lift with a soft navy glow */
+/* Keep the CTA cluster on one optical line with the rest of the nav */
+.main-nav .inner-nav > ul > li > a.nav-linkedin-btn {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+.main-nav .inner-nav > ul.items-end .link-hover-anim {
+  top: 0;
+}
+/* Refined hover — gentle lift, no shadow */
 .nav-linkedin-btn svg {
-  transition:
-    transform 0.25s cubic-bezier(0.25, 0.8, 0.35, 1),
-    filter 0.25s cubic-bezier(0.25, 0.8, 0.35, 1);
-  filter: drop-shadow(0 0 0 rgba(27, 58, 92, 0));
+  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.35, 1);
 }
 .nav-linkedin-btn:hover svg,
 .nav-linkedin-btn:focus-visible svg {
   transform: translateY(-2px) scale(1.08);
-  filter: drop-shadow(0 4px 10px rgba(27, 58, 92, 0.25));
 }
 .nav-linkedin-btn:focus-visible {
   outline: 2px solid var(--ll-orange);

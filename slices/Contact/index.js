@@ -91,7 +91,7 @@ export default function Contact({ slice }) {
 
         <div className="row">
           <div className="col-lg-7 mb-sm-50">
-            <div className="ll-contact-panel wow fadeInUp" data-wow-delay="0.1s">
+            <div className="ll-contact-form wow fadeInUp" data-wow-delay="0.1s">
               <form
                 onSubmit={handleSubmit}
                 className="form contact-form"
@@ -158,29 +158,25 @@ export default function Contact({ slice }) {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="row align-items-center">
-                  <div className="col-lg-5">
-                    <button
-                      type="submit"
-                      disabled={status === "sending"}
-                      className="submit_btn btn btn-mod btn-large btn-round btn-hover-anim w-100"
-                      id="submit_btn"
-                      aria-controls="result"
-                    >
-                      <span>
-                        {status === "sending"
-                          ? "Sending…"
-                          : slice.primary.form_button_text || "Send Message"}
-                      </span>
-                    </button>
-                  </div>
-                  <div className="col-lg-7">
-                    {isFilled.richText(slice.primary.form_tip) && (
-                      <div className="form-tip pt-20 pt-sm-0 mt-sm-20">
-                        <PrismicRichText field={slice.primary.form_tip} />
-                      </div>
-                    )}
-                  </div>
+                <div className="ll-form-footer">
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="submit_btn btn btn-mod btn-large btn-round btn-hover-anim"
+                    id="submit_btn"
+                    aria-controls="result"
+                  >
+                    <span>
+                      {status === "sending"
+                        ? "Sending…"
+                        : slice.primary.form_button_text || "Send Message"}
+                    </span>
+                  </button>
+                  {isFilled.richText(slice.primary.form_tip) && (
+                    <div className="ll-form-tip">
+                      <PrismicRichText field={slice.primary.form_tip} />
+                    </div>
+                  )}
                 </div>
                 <div
                   id="result"
@@ -203,77 +199,73 @@ export default function Contact({ slice }) {
           </div>
 
           <div className="col-lg-5">
-            {hasImage && (
-              <figure
-                className="ll-contact-figure wow fadeInUp"
+            {(hasImage || contactItems.length > 0 || hasMap) && (
+              <aside
+                className="ll-contact-panel wow fadeInLeft"
                 data-wow-delay="0.25s"
               >
-                <PrismicNextImage
-                  field={slice.primary.image}
-                  className="ll-contact-image"
-                  sizes="(min-width: 992px) 41vw, 92vw"
-                />
-              </figure>
-            )}
+                {hasImage && (
+                  <figure className="ll-contact-figure">
+                    <PrismicNextImage
+                      field={slice.primary.image}
+                      className="ll-contact-image"
+                      sizes="(min-width: 992px) 41vw, 92vw"
+                    />
+                  </figure>
+                )}
 
-            {contactItems.length > 0 && (
-              <ul
-                className={`ll-contact-details wow fadeInUp${
-                  hasImage ? "" : " ll-contact-details-solo"
-                }`}
-                data-wow-delay="0.4s"
-              >
-                {contactItems.map((item, index) => {
-                  const iconPath = ICON_PATHS[item.icon] || ICON_PATHS.email;
-                  return (
-                    <li key={index} className="ll-contact-detail">
-                      <span className="ll-contact-icon" aria-hidden="true">
-                        <svg
-                          width={22}
-                          height={22}
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                        >
-                          <path d={iconPath} />
-                        </svg>
-                      </span>
-                      <span className="ll-contact-detail-body">
-                        {item.title && (
-                          <h4 className="ll-contact-detail-title">
-                            {item.title}
-                          </h4>
-                        )}
-                        {isFilled.richText(item.lines) && (
-                          <div className="ll-contact-detail-lines clearlinks">
-                            <PrismicRichText field={item.lines} />
-                          </div>
-                        )}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+                {contactItems.length > 0 && (
+                  <ul className="ll-contact-details">
+                    {contactItems.map((item, index) => {
+                      const iconPath = ICON_PATHS[item.icon] || ICON_PATHS.email;
+                      return (
+                        <li key={index} className="ll-contact-detail">
+                          <span className="ll-contact-icon" aria-hidden="true">
+                            <svg
+                              width={22}
+                              height={22}
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                            >
+                              <path d={iconPath} />
+                            </svg>
+                          </span>
+                          <span className="ll-contact-detail-body">
+                            {item.title && (
+                              <h4 className="ll-contact-detail-title">
+                                {item.title}
+                              </h4>
+                            )}
+                            {isFilled.richText(item.lines) && (
+                              <div className="ll-contact-detail-lines clearlinks">
+                                <PrismicRichText field={item.lines} />
+                              </div>
+                            )}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
 
-            {hasMap && (
-              <div
-                className="ll-contact-map wow fadeInUp"
-                data-wow-delay="0.55s"
-              >
-                <iframe
-                  src={slice.primary.map_embed_url}
-                  width={600}
-                  height={380}
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  title="Map"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
+                {hasMap && (
+                  <div className="ll-contact-map">
+                    <iframe
+                      src={slice.primary.map_embed_url}
+                      width={600}
+                      height={380}
+                      style={{ border: 0 }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      title="Map"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                )}
+              </aside>
             )}
           </div>
         </div>
