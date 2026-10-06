@@ -316,6 +316,23 @@ a:hover {
 }
 
 /* --------------------------------------------------------------------------
+   Hero stack images — single image variant.
+   The template's .stack-images-1/-3 are position:absolute, so the container
+   keeps its width only through an in-flow child (.stack-images-2). With one
+   image the container collapses to 0 width and the image renders 0x0.
+   Keep the single image in flow, drop the stack padding, and let it fill
+   the column.
+   -------------------------------------------------------------------------- */
+.stack-images.stack-images-single-wrap {
+  padding: 0;
+}
+.stack-images .stack-images-single {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
    Accents — orange as fill only
    -------------------------------------------------------------------------- */
 

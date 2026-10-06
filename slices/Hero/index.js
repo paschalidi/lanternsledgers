@@ -13,9 +13,11 @@ export default function Hero({ slice }) {
   }, []);
   const [isOpen, setOpen] = useState(false);
 
-  const stackImages = isFilled.group(slice.primary.stack_images)
-    ? slice.primary.stack_images
-    : [];
+  const stackImages = (
+    isFilled.group(slice.primary.stack_images)
+      ? slice.primary.stack_images
+      : []
+  ).filter((item) => isFilled.image(item.image));
   const titleText = asText(slice.primary.title) || "";
 
   return (
@@ -79,14 +81,24 @@ export default function Hero({ slice }) {
             </div>
             {stackImages.length > 0 && (
               <div className="col-md-5 offset-md-1 d-flex align-items-center">
-                <div className="stack-images">
+                <div
+                  className={
+                    stackImages.length === 1
+                      ? "stack-images stack-images-single-wrap"
+                      : "stack-images"
+                  }
+                >
                   {stackImages.map((item, index) => {
                     const offset = (index + 1) * 30;
                     const delay = 1.2 + index * 0.5;
+                    const stackClass =
+                      stackImages.length === 1
+                        ? "stack-images-single"
+                        : `stack-images-${index + 1}`;
                     return (
                       <div
                         key={index}
-                        className={`stack-images-${index + 1} parallax-mousemove`}
+                        className={`${stackClass} parallax-mousemove`}
                         data-offset={offset}
                       >
                         <div

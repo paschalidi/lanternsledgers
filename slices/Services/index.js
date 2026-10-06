@@ -7,9 +7,16 @@ import { useState } from "react";
 
 export default function Services({ slice }) {
   const sectionId = slice.primary.section_id || "services";
-  const services = isFilled.group(slice.primary.services)
-    ? slice.primary.services
-    : [];
+  const services = (
+    isFilled.group(slice.primary.services)
+      ? slice.primary.services
+      : []
+  ).filter(
+    (service) =>
+      isFilled.keyText(service.title) ||
+      isFilled.richText(service.description) ||
+      isFilled.image(service.image),
+  );
   const [activeTab, setActiveTab] = useState(0);
 
   return (
