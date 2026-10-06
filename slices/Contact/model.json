@@ -64,6 +64,13 @@
           "type": "Text",
           "config": { "label": "Form Button Text", "placeholder": "Send Message" }
         },
+        "form_success_message": {
+          "type": "Text",
+          "config": {
+            "label": "Form Success Message",
+            "placeholder": "Thank you. Your message is on its way, and I'll come back to you personally."
+          }
+        },
         "form_tip": {
           "type": "StructuredText",
           "config": { "label": "Form Tip Text", "multi": "paragraph,hyperlink" }
@@ -71,6 +78,13 @@
         "map_embed_url": {
           "type": "Text",
           "config": { "label": "Google Maps Embed URL" }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Contact Image",
+            "placeholder": "A warm photo or illustration, landscape (~4:3)"
+          }
         }
       },
       "items": {}

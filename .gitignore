@@ -4,6 +4,8 @@ node_modules
 
 .idea
 
+.env*
+
 .playwright-mcp
 # local artifacts
 .DS_Store

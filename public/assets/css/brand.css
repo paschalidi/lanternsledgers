@@ -284,6 +284,10 @@ a.btn-mod:focus-visible {
 .main-nav .inner-nav ul li a.active {
   color: var(--ll-navy-dark);
 }
+/* CTA cluster (Let's talk | LinkedIn) — no hover underline */
+.main-nav .inner-nav > ul.items-end > li > a::after {
+  display: none;
+}
 
 /* CTA link in the bar — same ink navy */
 .main-nav .link-hover-anim {
@@ -423,6 +427,147 @@ hr.white,
 .ll-service-body .text-gray {
   color: var(--ll-sage-dark);
   line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   Contact slice — the Lantern Desk
+   Form on a white panel left, Prismic-controlled image right, mounted on a
+   Warm Paper matte. The image is in-flow and fills its column (same rule
+   as the single hero image — never absolutely positioned).
+   -------------------------------------------------------------------------- */
+
+.ll-contact-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: clamp(24px, 4vw, 44px);
+  box-shadow:
+    0 1px 2px rgba(19, 17, 16, 0.04),
+    0 16px 40px rgba(27, 58, 92, 0.09);
+}
+
+/* Labels — quieter than the template's 18px */
+.ll-contact-panel .form label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ll-navy);
+  margin-bottom: 9px;
+}
+
+/* Inputs — Warm Paper wells; a lantern glow on focus.
+   Selector shape mirrors .form input[type=...] (0,2,1) + panel class to win. */
+.ll-contact-panel .form input[type="text"],
+.ll-contact-panel .form input[type="email"],
+.ll-contact-panel .form input[type="tel"],
+.ll-contact-panel .form textarea {
+  background: var(--ll-off-white);
+  border: 1px solid var(--color-gray-light-3);
+  border-radius: 10px;
+  color: var(--ll-navy);
+}
+.ll-contact-panel .form-control::placeholder {
+  color: var(--ll-sage-dark);
+  opacity: 1;
+}
+.ll-contact-panel .form input[type="text"]:focus,
+.ll-contact-panel .form input[type="email"]:focus,
+.ll-contact-panel .form input[type="tel"]:focus,
+.ll-contact-panel .form textarea:focus {
+  border-color: var(--ll-navy) !important;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(245, 162, 60, 0.28);
+  outline: none;
+}
+
+/* Image — fills the column, mounted on a Warm Paper matte */
+.ll-contact-figure {
+  margin: 0 0 28px;
+  background: var(--ll-paper);
+  padding: 10px;
+  border-radius: 16px;
+}
+.ll-contact-image {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Contact details — quiet stacked list with circular icon badges */
+.ll-contact-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ll-contact-details-solo {
+  margin-top: 8px;
+}
+.ll-contact-detail {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 0;
+}
+.ll-contact-detail:first-child {
+  padding-top: 0;
+}
+.ll-contact-detail + .ll-contact-detail {
+  border-top: 1px solid var(--color-gray-light-2);
+}
+.ll-contact-icon {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--ll-paper);
+  color: var(--ll-navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ll-contact-detail-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--ll-navy);
+  margin: 0 0 4px;
+}
+.ll-contact-detail-lines {
+  color: var(--ll-sage-dark);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.ll-contact-detail-lines a {
+  color: var(--ll-navy);
+}
+.ll-contact-detail-lines a:hover {
+  color: var(--ll-ember);
+}
+
+/* Form results — feedback in the live region under the button */
+.ll-form-result {
+  margin: 20px 0 0;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.ll-form-result-ok {
+  background: rgba(110, 126, 114, 0.14);
+  color: var(--ll-navy);
+}
+.ll-form-result-err {
+  background: rgba(200, 85, 61, 0.12);
+  color: #8a3a28;
+}
+
+/* Optional map below the details */
+.ll-contact-map {
+  margin-top: 28px;
+}
+.ll-contact-map iframe {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
 }
 
 /* --------------------------------------------------------------------------
@@ -674,4 +819,100 @@ footer .text-gray a.link-to-top:hover:before {
 a.link-to-top:hover,
 footer .text-gray a.link-to-top:hover {
   color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — reveals settle instantly, nothing waits on JS to fire
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .appear-animate .wow,
+  .appear-animate .wow-p,
+  .appear-animate .wow-menubar {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    visibility: visible !important;
+    transition: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Navbar LinkedIn icon — exact freebiesupply.com mark (circle "in", light
+   blue gradient #2489be→#0575b3 baked into the SVG), no container.
+   -------------------------------------------------------------------------- */
+.nav-linkedin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  vertical-align: middle;
+}
+/* Light blue vertical divider between the CTA text and the LinkedIn icon,
+   vertically centered against the full menu bar height */
+.nav-cta-divider-wrap {
+  display: flex;
+  align-items: center;
+  height: var(--menu-bar-height);
+}
+.nav-cta-divider {
+  display: block;
+  width: 2px;
+  height: 18px;
+  background: var(--ll-navy-dark);
+  opacity: 0.45;
+}
+/* Refined hover — gentle lift with a soft navy glow */
+.nav-linkedin-btn svg {
+  transition:
+    transform 0.25s cubic-bezier(0.25, 0.8, 0.35, 1),
+    filter 0.25s cubic-bezier(0.25, 0.8, 0.35, 1);
+  filter: drop-shadow(0 0 0 rgba(27, 58, 92, 0));
+}
+.nav-linkedin-btn:hover svg,
+.nav-linkedin-btn:focus-visible svg {
+  transform: translateY(-2px) scale(1.08);
+  filter: drop-shadow(0 4px 10px rgba(27, 58, 92, 0.25));
+}
+.nav-linkedin-btn:focus-visible {
+  outline: 2px solid var(--ll-orange);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Legal pages — readable rich text in the narrow content column
+   -------------------------------------------------------------------------- */
+.legal-content h2 {
+  margin-top: 2.4em;
+  margin-bottom: 0.6em;
+}
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+.legal-content p {
+  margin-bottom: 1.1em;
+}
+.legal-content ul,
+.legal-content ol {
+  padding-left: 1.4em;
+  margin-bottom: 1.1em;
+}
+.legal-content ul {
+  list-style: disc;
+}
+.legal-content ol {
+  list-style: decimal;
+}
+.legal-content li {
+  margin-bottom: 0.5em;
+}
+.legal-content a {
+  color: var(--ll-navy);
+  text-decoration: underline;
+}
+.legal-content a:hover,
+.legal-content a:focus {
+  color: var(--ll-orange);
 }

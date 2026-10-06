@@ -1,71 +1,88 @@
 {
-  "id": "header",
-  "type": "SharedSlice",
-  "name": "Header",
   "description": "Site header with logo, navigation links, and CTA button",
+  "id": "header",
+  "name": "Header",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "",
-      "version": "initial",
       "description": "Standard header with logo, nav, and CTA",
+      "docURL": "",
+      "id": "default",
       "imageUrl": "",
+      "items": {},
+      "name": "Default",
       "primary": {
         "logo_light": {
-          "type": "Image",
           "config": {
-            "label": "Logo (Light Mode)",
-            "constraint": { "width": 210, "height": 68 }
-          }
+            "constraint": {
+              "height": 68,
+              "width": 210
+            },
+            "label": "Logo (Light Mode)"
+          },
+          "type": "Image"
         },
         "logo_dark": {
-          "type": "Image",
           "config": {
-            "label": "Logo (Dark Mode)",
-            "constraint": { "width": 210, "height": 68 }
-          }
+            "constraint": {
+              "height": 68,
+              "width": 210
+            },
+            "label": "Logo (Dark Mode)"
+          },
+          "type": "Image"
         },
         "cta_text": {
-          "type": "Text",
           "config": {
             "label": "CTA Text",
             "placeholder": "Let's work together"
-          }
+          },
+          "type": "Text"
         },
         "cta_link": {
-          "type": "Link",
           "config": {
-            "label": "CTA Link",
             "allowTargetBlank": true,
             "allowText": true,
+            "label": "CTA Link",
             "repeat": false
-          }
+          },
+          "type": "Link"
         },
         "nav_links": {
-          "type": "Group",
           "config": {
-            "label": "Navigation Links",
-            "repeat": true,
             "fields": {
               "link_text": {
-                "type": "Text",
-                "config": { "label": "Link Text", "placeholder": "About" }
+                "config": {
+                  "label": "Link Text",
+                  "placeholder": "About"
+                },
+                "type": "Text"
               },
               "link": {
-                "type": "Link",
                 "config": {
-                  "label": "Link",
                   "allowTargetBlank": true,
                   "allowText": true,
+                  "label": "Link",
                   "repeat": false
-                }
+                },
+                "type": "Link"
               }
-            }
-          }
+            },
+            "label": "Navigation Links",
+            "repeat": true
+          },
+          "type": "Group"
+        },
+        "linkedin_url": {
+          "config": {
+            "allowTargetBlank": true,
+            "label": "LinkedIn URL",
+            "select": "web"
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

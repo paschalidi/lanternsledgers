@@ -1,7 +1,9 @@
 "use client";
+import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import { isFilled, asText } from "@prismicio/client";
 import AnimatedText from "@/components/common/AnimatedText";
+import { useState } from "react";
 
 const ICON_PATHS = {
   email: "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z",
@@ -12,174 +14,267 @@ const ICON_PATHS = {
 
 export default function Contact({ slice }) {
   const sectionId = slice.primary.section_id || "contact";
-  const contactItems = isFilled.group(slice.primary.contact_items)
-    ? slice.primary.contact_items
-    : [];
+  const contactItems = (
+    isFilled.group(slice.primary.contact_items)
+      ? slice.primary.contact_items
+      : []
+  ).filter(
+    (item) =>
+      isFilled.keyText(item.title) || isFilled.richText(item.lines),
+  );
+  const hasImage = isFilled.image(slice.primary.image);
+  const hasMap = isFilled.keyText(slice.primary.map_embed_url);
+
+  const [values, setValues] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle");
+  const [resultMessage, setResultMessage] = useState("");
+
+  const handleChange = (e) =>
+    setValues((v) => ({ ...v, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (status === "sending") return;
+
+    setStatus("sending");
+    setResultMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        setStatus("success");
+        setResultMessage(
+          slice.primary.form_success_message ||
+            "Thank you. Your message is on its way, and I'll come back to you personally.",
+        );
+        setValues({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+        setResultMessage(
+          data.error || "That didn't send. Please try again in a moment.",
+        );
+      }
+    } catch {
+      setStatus("error");
+      setResultMessage(
+        "That didn't send. Check your connection and try again in a moment.",
+      );
+    }
+  };
+
 
   return (
     <section className="page-section scrollSpysection" id={sectionId}>
       <div className="container position-relative">
+        <div className="row mb-60 mb-sm-40">
+          <div className="col-lg-10">
+            {isFilled.keyText(slice.primary.caption) && (
+              <h2 className="section-caption mb-xs-10">
+                {slice.primary.caption}
+              </h2>
+            )}
+            {isFilled.richText(slice.primary.title) && (
+              <h3 className="section-title mb-0">
+                <span className="wow charsAnimIn" data-splitting="chars">
+                  <AnimatedText text={asText(slice.primary.title)} />
+                </span>
+              </h3>
+            )}
+          </div>
+        </div>
+
         <div className="row">
-          <div className="col-lg-6">
-            <div className="row mb-50">
-              <div className="col-lg-10">
-                {isFilled.keyText(slice.primary.caption) && (
-                  <h2 className="section-caption mb-xs-10">
-                    {slice.primary.caption}
-                  </h2>
-                )}
-                {isFilled.richText(slice.primary.title) && (
-                  <h3 className="section-title mb-0">
-                    <span className="wow charsAnimIn" data-splitting="chars">
-                      <AnimatedText text={asText(slice.primary.title)} />
-                    </span>
-                  </h3>
-                )}
-              </div>
+          <div className="col-lg-7 mb-sm-50">
+            <div className="ll-contact-panel wow fadeInUp" data-wow-delay="0.1s">
+              <form
+                onSubmit={handleSubmit}
+                className="form contact-form"
+                id="contact_form"
+              >
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label htmlFor="name">
+                        {slice.primary.form_title || "Name"}
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        className="input-lg form-control"
+                        placeholder="Enter your name"
+                        pattern=".{3,100}"
+                        autoComplete="name"
+                        maxLength={100}
+                        required
+                        aria-required="true"
+                        value={values.name}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label htmlFor="email">
+                        {slice.primary.form_email_label || "Email"}
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        className="input-lg form-control"
+                        placeholder="Enter your email"
+                        pattern=".{5,100}"
+                        autoComplete="email"
+                        maxLength={254}
+                        required
+                        aria-required="true"
+                        value={values.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="message">
+                    {slice.primary.form_message_label || "Message"}
+                  </label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    className="input-lg form-control"
+                    style={{ height: 150 }}
+                    placeholder="Enter your message"
+                    maxLength={5000}
+                    required
+                    aria-required="true"
+                    value={values.message}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="row align-items-center">
+                  <div className="col-lg-5">
+                    <button
+                      type="submit"
+                      disabled={status === "sending"}
+                      className="submit_btn btn btn-mod btn-large btn-round btn-hover-anim w-100"
+                      id="submit_btn"
+                      aria-controls="result"
+                    >
+                      <span>
+                        {status === "sending"
+                          ? "Sending…"
+                          : slice.primary.form_button_text || "Send Message"}
+                      </span>
+                    </button>
+                  </div>
+                  <div className="col-lg-7">
+                    {isFilled.richText(slice.primary.form_tip) && (
+                      <div className="form-tip pt-20 pt-sm-0 mt-sm-20">
+                        <PrismicRichText field={slice.primary.form_tip} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div
+                  id="result"
+                  role="region"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+                  {resultMessage && (
+                    <p
+                      className={`ll-form-result ${
+                        status === "success" ? "ll-form-result-ok" : "ll-form-result-err"
+                      }`}
+                    >
+                      {resultMessage}
+                    </p>
+                  )}
+                </div>
+              </form>
             </div>
           </div>
-          <div className="col-lg-6">
-            <div className="row mb-60 mb-sm-50">
-              {contactItems.map((item, index) => {
-                const iconPath = ICON_PATHS[item.icon] || ICON_PATHS.email;
-                return (
-                  <div
-                    key={index}
-                    className="col-sm-6 mb-xs-30 d-flex align-items-stretch"
-                  >
-                    <div
-                      className="alt-features-item border-left mt-0 wow fadeScaleIn"
-                      data-wow-delay={`.${3 + index * 2}s`}
-                    >
-                      <div className="alt-features-icon">
+
+          <div className="col-lg-5">
+            {hasImage && (
+              <figure
+                className="ll-contact-figure wow fadeInUp"
+                data-wow-delay="0.25s"
+              >
+                <PrismicNextImage
+                  field={slice.primary.image}
+                  className="ll-contact-image"
+                  sizes="(min-width: 992px) 41vw, 92vw"
+                />
+              </figure>
+            )}
+
+            {contactItems.length > 0 && (
+              <ul
+                className={`ll-contact-details wow fadeInUp${
+                  hasImage ? "" : " ll-contact-details-solo"
+                }`}
+                data-wow-delay="0.4s"
+              >
+                {contactItems.map((item, index) => {
+                  const iconPath = ICON_PATHS[item.icon] || ICON_PATHS.email;
+                  return (
+                    <li key={index} className="ll-contact-detail">
+                      <span className="ll-contact-icon" aria-hidden="true">
                         <svg
-                          width={24}
-                          height={24}
+                          width={22}
+                          height={22}
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fillRule="evenodd"
                           clipRule="evenodd"
                         >
                           <path d={iconPath} />
                         </svg>
-                      </div>
-                      {item.title && (
-                        <h4 className="alt-features-title">{item.title}</h4>
-                      )}
-                      {isFilled.richText(item.lines) && (
-                        <div className="alt-features-descr clearlinks">
-                          <PrismicRichText field={item.lines} />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        <div className="row wow fadeInUp" data-wow-delay="0.5s">
-          <div className="col-md-6 mb-sm-50">
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="form contact-form pe-lg-5"
-              id="contact_form"
-            >
-              <div className="row">
-                <div className="col-lg-6">
-                  <div className="form-group">
-                    <label htmlFor="name">
-                      {slice.primary.form_title || "Name"}
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="input-lg round form-control"
-                      placeholder="Enter your name"
-                      pattern=".{3,100}"
-                      required
-                      aria-required="true"
-                    />
-                  </div>
-                </div>
-                <div className="col-lg-6">
-                  <div className="form-group">
-                    <label htmlFor="email">
-                      {slice.primary.form_email_label || "Email"}
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="input-lg round form-control"
-                      placeholder="Enter your email"
-                      pattern=".{5,100}"
-                      required
-                      aria-required="true"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">
-                  {slice.primary.form_message_label || "Message"}
-                </label>
-                <textarea
-                  name="message"
-                  id="message"
-                  className="input-lg round form-control"
-                  style={{ height: 130 }}
-                  placeholder="Enter your message"
-                  defaultValue={""}
-                />
-              </div>
-              <div className="row">
-                <div className="col-lg-5">
-                  <div className="pt-20">
-                    <button
-                      className="submit_btn btn btn-mod btn-large btn-round btn-hover-anim"
-                      id="submit_btn"
-                      aria-controls="result"
-                    >
-                      <span>
-                        {slice.primary.form_button_text || "Send Message"}
                       </span>
-                    </button>
-                  </div>
-                </div>
-                <div className="col-lg-7">
-                  {isFilled.richText(slice.primary.form_tip) && (
-                    <div className="form-tip pt-20 pt-sm-0 mt-sm-20">
-                      <PrismicRichText field={slice.primary.form_tip} />
-                    </div>
-                  )}
-                </div>
-              </div>
+                      <span className="ll-contact-detail-body">
+                        {item.title && (
+                          <h4 className="ll-contact-detail-title">
+                            {item.title}
+                          </h4>
+                        )}
+                        {isFilled.richText(item.lines) && (
+                          <div className="ll-contact-detail-lines clearlinks">
+                            <PrismicRichText field={item.lines} />
+                          </div>
+                        )}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+
+            {hasMap && (
               <div
-                id="result"
-                role="region"
-                aria-live="polite"
-                aria-atomic="true"
-              />
-            </form>
-          </div>
-          <div className="col-md-6 d-flex align-items-stretch">
-            <div className="map-boxed">
-              {isFilled.keyText(slice.primary.map_embed_url) && (
+                className="ll-contact-map wow fadeInUp"
+                data-wow-delay="0.55s"
+              >
                 <iframe
                   src={slice.primary.map_embed_url}
                   width={600}
-                  height={450}
+                  height={380}
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
+                  title="Map"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -26,6 +26,7 @@
     "react-photoswipe-gallery": "^3.0.1",
     "react-type-animation": "^3.2.0",
     "rellax": "^1.12.1",
+    "resend": "^6.32.1",
     "swiper": "^11.2.2",
     "tippy.js": "^6.3.7",
     "wowjs": "^1.1.3"

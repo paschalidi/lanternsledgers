@@ -605,6 +605,16 @@ export interface ContactSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	map_embed_url: prismic.KeyTextField;
+	
+	/**
+	 * Contact Image field in *Contact → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: A warm photo or illustration, landscape (~4:3)
+	 * - **API ID Path**: contact.default.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
 }
 
 /**
@@ -1009,6 +1019,16 @@ export interface HeaderSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	nav_links: prismic.GroupField<Simplify<HeaderSliceDefaultPrimaryNavLinksItem>>;
+	
+	/**
+	 * LinkedIn URL field in *Header → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: header.default.primary.linkedin_url
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	linkedin_url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
