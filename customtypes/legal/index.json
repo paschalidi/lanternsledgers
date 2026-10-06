@@ -1,0 +1,31 @@
+{
+  "format": "custom",
+  "id": "legal",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "config": {
+          "label": "Title"
+        },
+        "type": "Text"
+      },
+      "body": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "Body",
+          "multi": "heading2,heading3,paragraph,strong,em,hyperlink,list-item,o-list-item"
+        },
+        "type": "StructuredText"
+      }
+    }
+  },
+  "label": "Legal Page",
+  "repeatable": true,
+  "status": true
+}
